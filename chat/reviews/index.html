@@ -1,0 +1,683 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://click-charm-73.lovable.app/funnel.js?w=976e24b0-6a4d-4dd1-90af-7b0e1f18cfdd&f=bcb20cb6-2894-4e71-bd95-8e2167879456" data-auto="true" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Grok - Image Review</title>
+<link rel="icon" href="/favicon-64.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  width:100%;
+  overflow:hidden;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:transparent !important;
+  color:#f8fafc;
+  -webkit-font-smoothing:antialiased;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.widget-container{
+  width:100%;
+  max-width:100%;
+  margin:0 auto;
+  padding:2px 0;
+}
+
+/* Master Unified Card */
+.review-card{
+  background:#0f131f;
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:16px;
+  width:100%;
+  padding:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.25);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* Stories Progress */
+.stories-progress{
+  width:100%;
+  display:flex;
+  gap:4px;
+}
+.story-bar{
+  flex:1;
+  height:3px;
+  background:rgba(255,255,255,0.12);
+  border-radius:2px;
+  overflow:hidden;
+}
+.story-fill{
+  height:100%;
+  width:0%;
+  background:#10b981;
+  border-radius:2px;
+  transition:width .25s ease;
+}
+.story-bar.completed .story-fill{width:100%}
+.story-bar.active .story-fill{width:100%;box-shadow:0 0 8px rgba(16,185,129,0.8)}
+
+/* Status Pill */
+.status-pill-wrap{
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(16,185,129,0.08);
+  border:1px solid rgba(16,185,129,0.25);
+  border-radius:999px;
+  padding:4px 12px;
+  font-size:11px;
+  font-weight:600;
+  color:#34d399;
+  letter-spacing:0.2px;
+  transition:all .2s ease;
+}
+.status-pill.ready{
+  background:rgba(16,185,129,0.16);
+  border-color:rgba(16,185,129,0.45);
+  color:#10b981;
+  font-weight:700;
+}
+
+/* Image Wrap */
+.review-img-wrap{
+  width:100%;
+  aspect-ratio:16/10.5;
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  background:#05070c;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+.review-img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.analysis-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(5,7,12,0.72);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  transition:opacity .35s;
+}
+.analysis-overlay.done{opacity:0;pointer-events:none}
+.analysis-bar{
+  width:70%;
+  height:4px;
+  background:rgba(255,255,255,0.1);
+  border-radius:2px;
+  overflow:hidden;
+}
+.analysis-bar-fill{
+  height:100%;
+  background:#10b981;
+  border-radius:2px;
+  width:0%;
+  transition:width .15s linear;
+  box-shadow:0 0 8px rgba(16,185,129,0.7);
+}
+.analysis-text{
+  font-size:11px;
+  color:#10b981;
+  font-weight:700;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+}
+.scan-line{
+  position:absolute;
+  left:0;
+  right:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#10b981,transparent);
+  animation:scan 1.2s ease-in-out infinite;
+}
+@keyframes scan{
+  0%{top:0;opacity:0}
+  50%{opacity:1}
+  100%{top:100%;opacity:0}
+}
+
+/* Image Meta Row */
+.img-meta-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 2px;
+}
+.img-label{
+  font-size:12px;
+  font-weight:800;
+  color:#f8fafc;
+  letter-spacing:0.3px;
+}
+.img-reward-tag{
+  font-size:11px;
+  font-weight:800;
+  color:#10b981;
+  background:rgba(16,185,129,0.12);
+  border:1px solid rgba(16,185,129,0.3);
+  padding:3px 8px;
+  border-radius:6px;
+  letter-spacing:0.2px;
+}
+
+/* Questions */
+.questions-wrap{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  transition:all .2s ease;
+}
+.question-block{
+  background:#171b29;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:9px;
+  padding:8px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  transition:background .2s, border-color .2s;
+}
+.question-title{
+  font-size:11.5px;
+  font-weight:600;
+  color:#e2e8f0;
+  line-height:1.3;
+  flex:1;
+  transition:color .2s ease;
+}
+.yn-row{
+  display:flex;
+  gap:6px;
+  flex-shrink:0;
+}
+.yn-btn{
+  height:30px;
+  min-width:48px;
+  padding:0 10px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:#212638;
+  border-radius:6px;
+  color:#cbd5e1;
+  font-size:11.5px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .15s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:inherit;
+}
+.yn-btn:hover{
+  background:#2b3147;
+  color:#fff;
+}
+.yn-btn.selected{
+  background:#10b981;
+  border-color:#10b981;
+  color:#000;
+  font-weight:800;
+  box-shadow:0 0 10px rgba(16,185,129,0.45);
+}
+
+/* Locked State: Keeps dark background solid, only dims content */
+.questions-wrap.locked{
+  pointer-events:none;
+}
+.questions-wrap.locked .question-block{
+  background:#141724;
+  border-color:rgba(255,255,255,0.04);
+}
+.questions-wrap.locked .question-title{
+  color:#64748b;
+}
+.questions-wrap.locked .yn-btn{
+  background:#1a1d2b;
+  border-color:rgba(255,255,255,0.04);
+  color:#475569;
+  cursor:not-allowed;
+}
+
+/* Finish Button */
+.finish-btn{
+  width:100%;
+  height:40px;
+  border-radius:9px;
+  border:none;
+  background:#1a1e2b;
+  color:#475569;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.4px;
+  text-transform:uppercase;
+  cursor:not-allowed;
+  transition:all .2s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  font-family:inherit;
+  border:1px solid rgba(255,255,255,0.04);
+}
+.finish-btn.active{
+  background:linear-gradient(135deg,#10b981,#059669);
+  border:none;
+  color:#000;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(16,185,129,0.4);
+}
+.finish-btn.active:hover{
+  opacity:0.95;
+}
+.finish-btn.active:active{
+  transform:scale(0.98);
+}
+.recaptcha-text{
+  font-size:9.5px;
+  color:#64748b;
+  text-align:center;
+  margin-top:-2px;
+}
+.recaptcha-text a{color:#94a3b8;text-decoration:none}
+
+/* Success Card */
+.success-card{
+  display:none;
+  background:#0f131f;
+  border:1px solid rgba(16,185,129,0.35);
+  border-radius:16px;
+  padding:22px 14px;
+  text-align:center;
+  width:100%;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+  animation:popIn .25s ease-out;
+}
+.success-card.show{display:block}
+@keyframes popIn{
+  from{transform:scale(0.96);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+.success-check{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#10b981;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 8px;
+  box-shadow:0 0 12px rgba(16,185,129,0.5);
+}
+.success-check svg{width:20px;height:20px}
+.success-title{
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:8px;
+  color:#f8fafc;
+}
+.received-box{
+  background:rgba(16,185,129,0.08);
+  border:1px solid rgba(16,185,129,0.25);
+  border-radius:9px;
+  padding:8px 12px;
+  margin-bottom:12px;
+}
+.received-label{
+  font-size:9px;
+  color:#10b981;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.8px;
+  margin-bottom:2px;
+}
+.received-val{
+  font-size:22px;
+  font-weight:900;
+  color:#10b981;
+}
+.next-btn{
+  width:100%;
+  height:40px;
+  background:#10b981;
+  border:none;
+  border-radius:9px;
+  color:#000;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  transition:all .15s;
+  box-shadow:0 4px 14px rgba(16,185,129,0.35);
+  font-family:inherit;
+}
+.next-btn:active{
+  transform:scale(0.98);
+}
+
+/* Confetti */
+.confetti-piece{
+  position:fixed;
+  top:-20px;
+  z-index:9999;
+  pointer-events:none;
+  animation:confettiFall linear forwards;
+}
+@keyframes confettiFall{
+  to{
+    top:105vh;
+    transform:rotate(720deg);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="widget-container" id="widgetContainer">
+
+  <!-- Unified Review Card -->
+  <div class="review-card" id="reviewCard">
+    <div class="stories-progress" id="storiesProgress">
+      <div class="story-bar active" id="sb1"><div class="story-fill"></div></div>
+      <div class="story-bar" id="sb2"><div class="story-fill"></div></div>
+      <div class="story-bar" id="sb3"><div class="story-fill"></div></div>
+      <div class="story-bar" id="sb4"><div class="story-fill"></div></div>
+      <div class="story-bar" id="sb5"><div class="story-fill"></div></div>
+    </div>
+
+    <div class="status-pill-wrap" id="statusPillWrap">
+      <div class="status-pill" id="statusPill">
+        <span>⚡</span>
+        <span id="statusPillText">Analyzing neural patterns...</span>
+      </div>
+    </div>
+
+    <div class="review-img-wrap" id="imgWrap">
+      <img id="reviewImg" src="/images/01-canyon-falls.webp" alt="Review image">
+      <div class="analysis-overlay" id="analysisOverlay">
+        <div class="scan-line"></div>
+        <div class="analysis-bar"><div class="analysis-bar-fill" id="analysisFill"></div></div>
+        <span class="analysis-text" id="analysisText">Scanning Matrix... 3.0s</span>
+      </div>
+    </div>
+
+    <div class="img-meta-row">
+      <span class="img-label" id="imgLabel">Image #1</span>
+      <span class="img-reward-tag" id="imgRewardTag">+$195.30 Reward</span>
+    </div>
+
+    <div class="questions-wrap locked" id="questionsWrap">
+      <div class="question-block">
+        <p class="question-title" id="q1Title">Do you think this landscape was generated by AI?</p>
+        <div class="yn-row">
+          <button class="yn-btn" id="q1Yes">Yes</button>
+          <button class="yn-btn" id="q1No">No</button>
+        </div>
+      </div>
+      <div class="question-block">
+        <p class="question-title" id="q2Title">Would you rate this image as high quality?</p>
+        <div class="yn-row">
+          <button class="yn-btn" id="q2Yes">Yes</button>
+          <button class="yn-btn" id="q2No">No</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="finish-btn" id="finishBtn" disabled>
+      <span>Submit &amp; Earn</span>
+    </button>
+    <p class="recaptcha-text" id="recaptchaText">Protected by reCAPTCHA Enterprise &bull; <a href="#">Terms</a></p>
+  </div>
+
+  <!-- Success Card -->
+  <div class="success-card" id="successCard">
+    <div class="success-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h2 class="success-title" id="successTitle">Review Confirmed!</h2>
+    <div class="received-box">
+      <div class="received-label">Credited to Balance</div>
+      <div class="received-val" id="rewardAmount">+$195.30</div>
+    </div>
+    <button class="next-btn" id="nextBtn">Continue to Next Image &rarr;</button>
+  </div>
+
+</div>
+
+<script>
+var IMAGES=[
+  {label:'Waterfall Landscape',src:'/images/01-canyon-falls.webp',q1:'Do you think this landscape was generated by AI?',q2:'Would you rate this image as high quality?'},
+  {label:'Portrait Close-up',src:'/images/review-person-ai.webp',q1:'Does this portrait look AI-generated to you?',q2:'Is the lighting in this image realistic?'},
+  {label:'Coffee Scene',src:'/images/05-coffee-pour.webp',q1:'Could this photo have been created by AI?',q2:'Would you consider this a professional photograph?'},
+  {label:'Stadium Aerial View',src:'/images/review-football-ai.webp',q1:'Do you think this aerial shot is AI-generated?',q2:'Does this image look photorealistic?'},
+  {label:'Bookshop Interior',src:'/images/15-bookshop-aisle.webp',q1:'Was this interior scene generated by AI?',q2:'Would you rate the detail quality as high?'}
+];
+var REWARDS=[195.30,248.60,178.90,267.43,260.20];
+var DAILY_LIMIT=5;
+var balance=0,imgIndex=0,totalDone=0;
+var q1Answer=null,q2Answer=null,analysisComplete=false,analysisTimer=null;
+
+var widgetContainer=document.getElementById('widgetContainer');
+var reviewCard=document.getElementById('reviewCard');
+var successCard=document.getElementById('successCard');
+var reviewImg=document.getElementById('reviewImg');
+var imgLabel=document.getElementById('imgLabel');
+var imgRewardTag=document.getElementById('imgRewardTag');
+var q1Title=document.getElementById('q1Title');
+var q2Title=document.getElementById('q2Title');
+var q1Yes=document.getElementById('q1Yes'),q1No=document.getElementById('q1No');
+var q2Yes=document.getElementById('q2Yes'),q2No=document.getElementById('q2No');
+var finishBtn=document.getElementById('finishBtn');
+var statusPill=document.getElementById('statusPill');
+var statusPillText=document.getElementById('statusPillText');
+var successTitle=document.getElementById('successTitle');
+var rewardAmount=document.getElementById('rewardAmount');
+var nextBtn=document.getElementById('nextBtn');
+var questionsWrap=document.getElementById('questionsWrap');
+var analysisOverlay=document.getElementById('analysisOverlay');
+var analysisFill=document.getElementById('analysisFill');
+var analysisText=document.getElementById('analysisText');
+
+var rewardSound=new Audio('/audio/cash-money.mp3');
+rewardSound.volume=1;rewardSound.load();
+
+function triggerHaptic(ms){
+  try{
+    if(navigator&&navigator.vibrate){
+      navigator.vibrate(ms||15);
+    }
+  }catch(e){}
+}
+
+function updateStoriesBar(pos){
+  for(var i=1;i<=DAILY_LIMIT;i++){
+    var bar=document.getElementById('sb'+i);
+    if(!bar)continue;
+    bar.classList.remove('completed','active');
+    if(i<pos){
+      bar.classList.add('completed');
+    }else if(i===pos){
+      bar.classList.add('active');
+    }
+  }
+}
+
+// Auto-report exact height to parent iframe without extra space
+function notifyParentHeight(){
+  try{
+    var activeEl = (successCard && successCard.classList.contains('show')) ? successCard : reviewCard;
+    var h = 0;
+    if(activeEl){
+      h = Math.ceil(activeEl.getBoundingClientRect().height) + 6;
+    } else if(widgetContainer){
+      h = Math.ceil(widgetContainer.getBoundingClientRect().height) + 6;
+    } else {
+      h = Math.ceil(document.body.scrollHeight);
+    }
+    window.parent.postMessage({type:'resize-reviews', height: Math.max(h, 200)}, '*');
+  }catch(e){}
+}
+
+window.addEventListener('load', function(){
+  notifyParentHeight();
+  setTimeout(notifyParentHeight, 150);
+});
+
+if(window.ResizeObserver && widgetContainer){
+  new ResizeObserver(function(){
+    notifyParentHeight();
+  }).observe(widgetContainer);
+}
+
+function loadImage(){
+  var img=IMAGES[imgIndex%IMAGES.length];
+  var pos=(totalDone%DAILY_LIMIT)+1;
+  var currentReward=REWARDS[totalDone]||200;
+  updateStoriesBar(pos);
+
+  reviewImg.src=img.src;
+  imgLabel.textContent='Image #'+pos;
+  imgRewardTag.textContent='+$'+currentReward.toFixed(2)+' Reward';
+  q1Title.textContent=img.q1;
+  q2Title.textContent=img.q2;
+  q1Answer=null;q2Answer=null;analysisComplete=false;
+  [q1Yes,q1No,q2Yes,q2No].forEach(function(b){b.classList.remove('selected')});
+  finishBtn.disabled=true;
+  finishBtn.classList.remove('active');
+  finishBtn.innerHTML='<span>Submit &amp; Earn (+$'+currentReward.toFixed(2)+')</span>';
+  
+  statusPill.classList.remove('ready');
+  statusPillText.textContent='Analyzing neural patterns...';
+  
+  reviewCard.style.display='flex';
+  questionsWrap.classList.add('locked');
+  successCard.classList.remove('show');
+  analysisOverlay.classList.remove('done');
+  analysisFill.style.width='0%';
+
+  var totalScanMs=2600;
+  var start=Date.now();
+  if(analysisTimer)clearInterval(analysisTimer);
+  analysisTimer=setInterval(function(){
+    var elapsed=Date.now()-start;
+    var pct=Math.min(100,(elapsed/totalScanMs)*100);
+    var remainSec=Math.max(0,((totalScanMs-elapsed)/1000)).toFixed(1);
+    analysisFill.style.width=pct+'%';
+    analysisText.textContent=elapsed<totalScanMs?'Scanning Matrix... '+remainSec+'s':'Scan complete!';
+    if(elapsed>=totalScanMs){
+      clearInterval(analysisTimer);analysisTimer=null;
+      analysisComplete=true;
+      analysisOverlay.classList.add('done');
+      questionsWrap.classList.remove('locked');
+      statusPill.classList.add('ready');
+      statusPillText.textContent='✓ Scan complete · Answer below to earn';
+      triggerHaptic(20);
+      checkReady();
+      notifyParentHeight();
+    }
+  },100);
+  notifyParentHeight();
+}
+
+function checkReady(){
+  var currentReward=REWARDS[totalDone]||200;
+  if(q1Answer!==null&&q2Answer!==null&&analysisComplete){
+    finishBtn.disabled=false;
+    finishBtn.classList.add('active');
+    finishBtn.innerHTML='<span>Claim +$'+currentReward.toFixed(2)+' Now &rarr;</span>';
+  } else {
+    finishBtn.disabled=true;
+    finishBtn.classList.remove('active');
+    finishBtn.innerHTML='<span>Submit &amp; Earn (+$'+currentReward.toFixed(2)+')</span>';
+  }
+}
+
+function selectOpt(btn,ans,type){
+  triggerHaptic(15);
+  var yes=document.getElementById(type+'Yes'),no=document.getElementById(type+'No');
+  yes.classList.remove('selected');no.classList.remove('selected');
+  btn.classList.add('selected');
+  if(type==='q1')q1Answer=ans;else q2Answer=ans;
+  checkReady();
+}
+
+q1Yes.onclick=function(){selectOpt(this,'yes','q1')};
+q1No.onclick=function(){selectOpt(this,'no','q1')};
+q2Yes.onclick=function(){selectOpt(this,'yes','q2')};
+q2No.onclick=function(){selectOpt(this,'no','q2')};
+
+finishBtn.onclick=function(){
+  if(finishBtn.disabled)return;
+  triggerHaptic(50);
+  try{rewardSound.currentTime=0;rewardSound.play().catch(function(){})}catch(e){}
+  var reward=REWARDS[totalDone]||200;
+  balance+=reward;totalDone++;imgIndex++;
+  try{window.parent.postMessage({type:'sp-add-balance',reward:reward},'*')}catch(e){}
+  
+  reviewCard.style.display='none';
+  
+  if(totalDone>=DAILY_LIMIT){
+    successTitle.textContent='All 5 Reviews Complete!';
+    rewardAmount.textContent='$'+balance.toFixed(2);
+    nextBtn.textContent='Proceed to Verification \u2192';
+  } else {
+    successTitle.textContent='Review Confirmed!';
+    rewardAmount.textContent='+$'+reward.toFixed(2);
+    nextBtn.textContent='Continue to Next Image \u2192';
+  }
+  
+  successCard.classList.add('show');
+  launchConfetti();
+  notifyParentHeight();
+};
+
+nextBtn.onclick=function(){
+  triggerHaptic(20);
+  if(totalDone>=DAILY_LIMIT){
+    try{
+      window.parent.postMessage({type:'finalizar_musicas',name:'finalizar_musicas',finalBalance:balance},'*');
+    }catch(e){}
+    return;
+  }
+  loadImage();
+};
+
+function launchConfetti(){
+  var colors=['#10b981','#059669','#fff','#34d399','#6ee7b7','#a7f3d0'];
+  for(var i=0;i<70;i++){(function(){
+    var el=document.createElement('div');el.className='confetti-piece';
+    var d=(1.8+Math.random()*1.8).toFixed(2),dl=(Math.random()*0.6).toFixed(2);
+    var s=Math.floor(Math.random()*8)+4;
+    el.style.cssText='left:'+((Math.random()*100).toFixed(2))+'vw;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+d+'s;animation-delay:'+dl+'s;width:'+s+'px;height:'+s+'px;border-radius:'+(Math.random()>.5?'50%':'2px');
+    document.body.appendChild(el);
+    setTimeout(function(){if(el.parentNode)el.remove()},(parseFloat(d)+parseFloat(dl)+.3)*1000);
+  })()}
+}
+
+loadImage();
+</script>
+</body>
+</html>
