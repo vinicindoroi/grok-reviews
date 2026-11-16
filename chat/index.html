@@ -390,6 +390,7 @@ await say('You are being redirected to the payment page...');
 
 // 11. redirecionamento_checkout
 step('redirecionamento_checkout');
+try { if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { value: 19.00, currency: 'USD' }); } catch(e) {}
 var checkoutUrl=window.grkUrlWith(CHECKOUT,{
 name:vars.nome||'',nome:vars.nome||'',ref:'chat',
 visit_id:(window.grkParams&&window.grkParams.visit_id)||localStorage.getItem('grk_visit_id')||'',
